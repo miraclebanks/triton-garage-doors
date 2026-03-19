@@ -48,7 +48,7 @@ export function Header() {
           {/* Desktop CTA */}
           <div className={scrolled ? "hidden" : "hidden md:flex items-center gap-4"}>
             <a href={`tel:${COMPANY.phoneTel}`} className="text-sm font-medium text-primary-foreground/70 hover:text-primary-foreground transition-colors">
-              {COMPANY.phone}
+              Call Now
             </a>
             <Link
               href="#contact"

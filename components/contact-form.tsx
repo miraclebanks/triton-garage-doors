@@ -14,7 +14,7 @@ import {
 import { MapPin, Phone, Mail, Clock, CheckCircle2, ArrowRight } from "lucide-react"
 
 const contactDetails = [
-  { icon: Phone, label: "Phone", value: COMPANY.phone, sub: "Mon–Fri 7am–5pm" },
+  { icon: Phone, label: "Phone", value: "Call Now", sub: "Mon–Fri 7am–5pm" },
   { icon: Mail, label: "Email", value: COMPANY.email, sub: "We respond within 24 hours" },
   { icon: MapPin, label: "Service Area", value: "Orange County, CA", sub: "Including surrounding cities" },
   { icon: Clock, label: "Hours", value: "Mon–Fri 7am–5pm", sub: null },

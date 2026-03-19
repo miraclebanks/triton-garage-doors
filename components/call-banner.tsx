@@ -48,7 +48,7 @@ export function CallBanner() {
               className="flex items-center gap-2 bg-accent-foreground text-accent font-bold rounded-lg px-5 py-2 text-base tracking-wide hover:bg-accent-foreground/90 transition-colors shadow"
             >
               <Phone className="h-4 w-4 shrink-0" />
-              {COMPANY.phone}
+              Call Now
             </a>
           </div>
 

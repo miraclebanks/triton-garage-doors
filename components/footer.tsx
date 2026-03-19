@@ -55,7 +55,7 @@ export function Footer() {
 
           {/* Contact + copyright */}
           <div className="flex flex-col sm:items-end gap-1 text-xs text-primary-foreground/40">
-            <span>{COMPANY.phone} · {COMPANY.email}</span>
+            <span>{COMPANY.email}</span>
             <span>&copy; {new Date().getFullYear()} Triton Garage Doors. All rights reserved.</span>
           </div>
         </div>
