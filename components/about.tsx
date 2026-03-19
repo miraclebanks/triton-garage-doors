@@ -24,8 +24,8 @@ export function About() {
         <div className="flex flex-col sm:grid sm:grid-cols-3 gap-px mb-16 rounded-xl bg-primary-foreground/10 overflow-hidden text-center">
           {stats.map((s) => (
             <div key={s.label} className="bg-primary px-6 py-6 sm:py-8 flex sm:flex-col items-center sm:items-center gap-4 sm:gap-0">
-              <div className="text-4xl sm:text-5xl font-extrabold text-accent w-28 sm:w-auto text-left sm:text-center">{s.value}</div>
-              <div className="text-base sm:text-base font-bold text-primary-foreground/60 sm:mt-1">{s.label}</div>
+              <div className="text-3xl sm:text-5xl font-extrabold text-accent w-32 sm:w-auto text-left sm:text-center">{s.value}</div>
+              <div className="text-sm sm:text-base font-bold text-primary-foreground/60 sm:mt-1">{s.label}</div>
             </div>
           ))}
         </div>
