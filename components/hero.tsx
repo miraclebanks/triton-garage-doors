@@ -1,74 +1,104 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Shield, Clock, Wrench } from "lucide-react"
+import { ArrowRight, Star, PhoneCall } from "lucide-react"
+import { COMPANY } from "@/lib/config"
+
+const stats = [
+  { value: "8+", label: "Years Serving OC" },
+  { value: "5,000+", label: "Jobs Completed" },
+  { value: "4.9★", label: "Average Rating" },
+  { value: "24/7", label: "Emergency Line" },
+]
 
 export function Hero() {
   return (
-    <section className="relative py-20 lg:py-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-1.5 text-sm font-medium text-secondary-foreground mb-6">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75"></span>
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-accent"></span>
-            </span>
-            Same-Day Service Available
-          </div>
+    <section className="relative bg-background overflow-hidden">
+      {/* Accent bar at top */}
+      <div className="h-1 bg-accent w-full" />
 
-          <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl text-balance">
-            Expert Garage Door
-            <br />
-            Repair & Installation
-          </h1>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-          <p className="mt-6 text-lg leading-relaxed text-muted-foreground max-w-2xl mx-auto text-pretty">
-            Professional garage door services you can trust. From quick repairs to full
-            installations, our certified technicians deliver quality workmanship with a
-            satisfaction guarantee.
-          </p>
-
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button size="lg" asChild className="w-full sm:w-auto">
-              <Link href="#contact">
-                Request Free Quote
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" asChild className="w-full sm:w-auto">
-              <Link href="#services">View Our Services</Link>
-            </Button>
-          </div>
-        </div>
-
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
-          <div className="flex flex-col items-center text-center p-6 rounded-xl bg-card border border-border">
-            <div className="h-12 w-12 rounded-full bg-secondary flex items-center justify-center mb-4">
-              <Clock className="h-6 w-6 text-accent" />
+          {/* Left: copy */}
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-sm bg-accent/10 border border-accent/30 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-accent mb-6">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+              </span>
+              Same-Day Service Available
             </div>
-            <h3 className="font-semibold text-foreground">Fast Response</h3>
-            <p className="text-sm text-muted-foreground mt-1">
-              Same-day service available
+
+            <h1 className="text-5xl font-extrabold tracking-tight text-foreground sm:text-6xl leading-[1.05] text-balance">
+              Garage Door
+              <br />
+              <span className="text-accent">Repair &amp;</span>
+              <br />
+              Installation
+            </h1>
+
+            <p className="mt-6 text-base leading-relaxed text-muted-foreground max-w-lg">
+              Triton Garage Doors delivers fast, reliable service across Orange County.
+              Certified techs, upfront pricing, and a satisfaction guarantee on every job.
             </p>
+
+            <div className="mt-8 flex flex-col sm:flex-row items-start gap-3">
+              <Button size="lg" asChild className="w-full sm:w-auto">
+                <Link href="#contact">
+                  Get Free Quote
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button size="lg" variant="outline" asChild className="w-full sm:w-auto">
+                <a href={`tel:${COMPANY.phoneTel}`}>
+                  <PhoneCall className="mr-2 h-4 w-4" />
+                  Call Now
+                </a>
+              </Button>
+            </div>
+
+            <div className="mt-8 flex items-center gap-2 text-sm text-muted-foreground">
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-4 w-4 fill-accent text-accent" />
+                ))}
+              </div>
+              <span>Rated 4.9/5 based on 500+ reviews</span>
+            </div>
           </div>
 
-          <div className="flex flex-col items-center text-center p-6 rounded-xl bg-card border border-border">
-            <div className="h-12 w-12 rounded-full bg-secondary flex items-center justify-center mb-4">
-              <Shield className="h-6 w-6 text-accent" />
-            </div>
-            <h3 className="font-semibold text-foreground">Licensed & Insured</h3>
-            <p className="text-sm text-muted-foreground mt-1">
-              Fully certified professionals
-            </p>
-          </div>
+          {/* Right: stats panel */}
+          <div className="relative">
+            <div className="rounded-2xl bg-primary text-primary-foreground p-8 lg:p-10 shadow-2xl">
+              <p className="text-xs font-bold uppercase tracking-widest text-primary-foreground/50 mb-6">
+                Why Triton
+              </p>
+              <div className="grid grid-cols-2 gap-6">
+                {stats.map((s) => (
+                  <div key={s.label} className="border-l-2 border-accent pl-4">
+                    <div className="text-3xl font-extrabold text-accent">{s.value}</div>
+                    <div className="text-sm text-primary-foreground/70 mt-0.5">{s.label}</div>
+                  </div>
+                ))}
+              </div>
 
-          <div className="flex flex-col items-center text-center p-6 rounded-xl bg-card border border-border">
-            <div className="h-12 w-12 rounded-full bg-secondary flex items-center justify-center mb-4">
-              <Wrench className="h-6 w-6 text-accent" />
+              <div className="mt-8 pt-6 border-t border-primary-foreground/10 space-y-3 text-sm text-primary-foreground/80">
+                {[
+                  "Licensed & fully insured technicians",
+                  "No hidden fees — upfront pricing always",
+                  "All major brands serviced",
+                  "Parts & labor guaranteed",
+                ].map((item) => (
+                  <div key={item} className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent shrink-0" />
+                    {item}
+                  </div>
+                ))}
+              </div>
             </div>
-            <h3 className="font-semibold text-foreground">Quality Parts</h3>
-            <p className="text-sm text-muted-foreground mt-1">
-              Premium materials used
-            </p>
+
+            {/* Decorative accent square */}
+            <div className="absolute -bottom-4 -right-4 h-24 w-24 rounded-xl bg-accent/20 -z-10" />
           </div>
         </div>
       </div>

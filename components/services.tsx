@@ -5,37 +5,37 @@ const services = [
     icon: Settings,
     title: "Garage Door Repair",
     description:
-      "Fast and reliable repairs for all types of garage doors. We fix springs, cables, rollers, and more.",
+      "Fast, reliable repairs for springs, cables, rollers, panels, and tracks. Most repairs completed same day.",
   },
   {
     icon: DoorOpen,
     title: "New Door Installation",
     description:
-      "Professional installation of residential and commercial garage doors from leading brands.",
+      "Full installation of residential and commercial garage doors from top brands, measured and fitted to perfection.",
   },
   {
     icon: Gauge,
     title: "Opener Services",
     description:
-      "Installation, repair, and maintenance of garage door openers including smart home integration.",
+      "Installation, repair, and smart-home integration of garage door openers from LiftMaster, Chamberlain, and more.",
   },
   {
     icon: Cog,
     title: "Spring Replacement",
     description:
-      "Expert replacement of torsion and extension springs with high-quality, durable parts.",
+      "Expert torsion and extension spring replacement using high-cycle, durable parts backed by a lifetime warranty.",
   },
   {
     icon: AlertTriangle,
     title: "Emergency Repairs",
     description:
-      "24/7 emergency service for urgent garage door issues. We're here when you need us most.",
+      "Stuck door at midnight? We offer 24/7 emergency dispatch across Orange County — no extra weekend fee.",
   },
   {
     icon: Zap,
     title: "Maintenance Plans",
     description:
-      "Regular maintenance to extend the life of your garage door and prevent costly repairs.",
+      "Scheduled tune-ups that catch problems early, lubricate moving parts, and extend door lifespan by years.",
   },
 ]
 
@@ -43,31 +43,44 @@ export function Services() {
   return (
     <section id="services" className="py-20 lg:py-28 bg-card">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance">
-            Our Services
+
+        {/* Header — left-aligned */}
+        <div className="mb-14">
+          <p className="text-xs font-bold uppercase tracking-widest text-accent mb-2">
+            What We Do
+          </p>
+          <h2 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+            Services We Offer
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground text-pretty">
-            Comprehensive garage door solutions for residential and commercial
-            properties. Quality service you can depend on.
+          <p className="mt-3 text-muted-foreground max-w-xl">
+            From a broken spring to a full new door — our certified technicians handle it all,
+            on time and on budget.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service) => (
+        {/* Service grid — 2 columns with numbered accent */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border rounded-xl overflow-hidden shadow-sm">
+          {services.map((service, i) => (
             <div
               key={service.title}
-              className="group p-6 rounded-xl bg-background border border-border hover:border-accent/50 transition-colors"
+              className="group flex gap-5 p-7 bg-background hover:bg-secondary/40 transition-colors"
             >
-              <div className="h-12 w-12 rounded-lg bg-secondary flex items-center justify-center mb-4 group-hover:bg-accent/10 transition-colors">
-                <service.icon className="h-6 w-6 text-accent" />
+              <div className="shrink-0 flex flex-col items-center gap-3">
+                <span className="text-xs font-bold text-accent/50 tabular-nums">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div className="h-10 w-10 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                  <service.icon className="h-5 w-5 text-accent" />
+                </div>
               </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                {service.title}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {service.description}
-              </p>
+              <div>
+                <h3 className="text-base font-bold text-foreground mb-1.5">
+                  {service.title}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {service.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>
