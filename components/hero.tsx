@@ -65,7 +65,7 @@ export function Hero() {
         </div>
 
         {/* Star rating */}
-        <div className="mt-6 flex items-center gap-2 text-sm text-accent">
+        <div className="mt-6 flex items-center gap-2 text-sm text-[oklch(0.65_0.18_70)]">
           <div className="flex">
             {[...Array(5)].map((_, i) => (
               <Star key={i} className="h-3.5 w-3.5 fill-accent text-accent" />
