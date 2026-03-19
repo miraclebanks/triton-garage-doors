@@ -1,4 +1,4 @@
-import { CreditCard, Smartphone } from "lucide-react"
+import { CreditCard, Smartphone, Banknote, Building2 } from "lucide-react"
 
 const methods = [
   {
@@ -13,6 +13,18 @@ const methods = [
     detail: "Visa, Mastercard, Amex, Discover",
     color: "bg-[oklch(0.38_0.14_258)]",
   },
+  {
+    icon: Banknote,
+    name: "Cash",
+    detail: "Always accepted",
+    color: "bg-[oklch(0.42_0.14_155)]",
+  },
+  {
+    icon: Building2,
+    name: "Debit Card",
+    detail: "All major debit cards",
+    color: "bg-[oklch(0.40_0.12_220)]",
+  },
 ]
 
 export function Payment() {
@@ -20,7 +32,7 @@ export function Payment() {
     <section className="bg-secondary border-t border-border">
       <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16 py-20 lg:py-28">
 
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8">
+        <div className="flex flex-col gap-8">
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.3em] text-accent mb-2">
               Easy Payment
@@ -33,11 +45,11 @@ export function Payment() {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {methods.map((m) => (
               <div
                 key={m.name}
-                className="flex items-center gap-5 bg-card border-2 border-border rounded-xl px-7 py-5 min-w-[220px]"
+                className="flex items-center gap-4 bg-card border-2 border-border rounded-xl px-5 py-5"
               >
                 <div className={`h-12 w-12 rounded-lg ${m.color} flex items-center justify-center shrink-0`}>
                   <m.icon className="h-6 w-6 text-white" />
