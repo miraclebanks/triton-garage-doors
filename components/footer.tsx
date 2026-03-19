@@ -38,7 +38,7 @@ export function Footer() {
         </div>
 
         {/* Bottom row */}
-        <div className="py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <div className="pt-8 pb-24 sm:pb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
 
           {/* Nav links */}
           <nav className="flex flex-wrap gap-6">
