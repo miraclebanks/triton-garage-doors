@@ -50,11 +50,11 @@ export function FAQ() {
   const [open, setOpen] = useState<number | null>(null)
 
   return (
-    <section id="faq" className="bg-primary text-primary-foreground">
+    <section id="faq" className="bg-primary text-primary-foreground py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
 
         {/* Header */}
-        <div className="py-16 border-b border-primary-foreground/10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+        <div className="pb-12 border-b border-primary-foreground/10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-accent mb-3">Got Questions</p>
             <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tighter uppercase text-primary-foreground">

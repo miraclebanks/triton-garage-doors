@@ -61,11 +61,11 @@ export function ContactForm() {
   }
 
   return (
-    <section id="contact" className="bg-background">
+    <section id="contact" className="bg-background py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
 
         {/* Header */}
-        <div className="py-16 border-b border-border flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+        <div className="pb-12 border-b border-border flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-accent mb-3">Get In Touch</p>
             <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tighter uppercase text-foreground">

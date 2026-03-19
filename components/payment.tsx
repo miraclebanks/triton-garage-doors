@@ -18,7 +18,7 @@ const methods = [
 export function Payment() {
   return (
     <section className="bg-secondary border-t border-border">
-      <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16 py-14">
+      <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16 py-20 lg:py-28">
 
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8">
           <div>

@@ -85,8 +85,6 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Diagonal bottom edge */}
-      <div className="h-12 bg-background" style={{ clipPath: "polygon(0 100%, 100% 0, 100% 100%)" }} />
     </section>
   )
 }
