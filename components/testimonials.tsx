@@ -98,8 +98,9 @@ export function Testimonials() {
         <div className="mt-12 text-center">
           <p className="text-muted-foreground text-lg font-bold">
             Rated{" "}
-            <span className="font-semibold text-foreground">4.9 out of 5</span>{" "}
-            based on 500+ verified reviews
+            <span className="font-semibold text-[oklch(0.65_0.18_70)]">4.9 out of 5</span>{" "}
+            based on{" "}
+            <span className="text-[oklch(0.65_0.18_70)]">500+ verified reviews</span>
           </p>
         </div>
       </div>
