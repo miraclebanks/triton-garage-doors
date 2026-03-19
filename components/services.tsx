@@ -70,13 +70,13 @@ export function Services() {
                   className="sm:hidden w-full flex items-center gap-4 py-5 text-left"
                   onClick={() => setOpenIndex(isOpen ? null : i)}
                 >
-                  <span className="text-sm font-bold text-accent/60 tabular-nums tracking-widest w-6 shrink-0">
+                  <span className="text-xs font-bold text-accent/60 tabular-nums w-5 shrink-0">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <div className="shrink-0 h-10 w-10 rounded bg-primary flex items-center justify-center">
-                    <service.icon className="h-5 w-5 text-primary-foreground" />
+                  <div className="shrink-0 h-8 w-8 rounded bg-primary flex items-center justify-center">
+                    <service.icon className="h-4 w-4 text-primary-foreground" />
                   </div>
-                  <h3 className="flex-1 text-sm font-extrabold tracking-tight text-foreground uppercase leading-tight">
+                  <h3 className="flex-1 text-xs font-extrabold tracking-tight text-foreground uppercase whitespace-nowrap overflow-hidden text-ellipsis">
                     {service.title}
                   </h3>
                   <ChevronDown
