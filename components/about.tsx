@@ -21,11 +21,11 @@ export function About() {
       <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
 
         {/* Stat bar */}
-        <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-16 rounded-xl bg-primary text-primary-foreground p-5 sm:p-8 text-center">
+        <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-16 rounded-xl bg-primary text-primary-foreground p-5 sm:p-8 text-center divide-x divide-primary-foreground/10">
           {stats.map((s) => (
-            <div key={s.label}>
-              <div className="text-3xl sm:text-5xl font-extrabold text-accent">{s.value}</div>
-              <div className="text-sm sm:text-base font-bold text-primary-foreground/60 mt-1">{s.label}</div>
+            <div key={s.label} className="px-2 sm:px-4">
+              <div className="text-2xl xs:text-3xl sm:text-5xl font-extrabold text-accent leading-tight">{s.value}</div>
+              <div className="text-xs sm:text-base font-bold text-primary-foreground/60 mt-1 leading-tight">{s.label}</div>
             </div>
           ))}
         </div>
