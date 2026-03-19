@@ -61,7 +61,7 @@ export function FAQ() {
               FAQ
             </h2>
           </div>
-          <p className="text-primary-foreground/50 max-w-xs text-sm leading-relaxed">
+          <p className="text-primary-foreground/70 text-sm leading-relaxed border border-primary-foreground/20 rounded px-4 py-3 bg-primary-foreground/5 max-w-xs">
             Don't see your question? Give us a call and we'll answer it directly.
           </p>
         </div>
@@ -91,7 +91,7 @@ export function FAQ() {
               </button>
 
               {open === i && (
-                <div className="pl-10 pb-6 text-sm font-semibold text-primary-foreground/70 leading-relaxed">
+                <div className="pl-10 pb-6 text-xl font-semibold text-primary-foreground/70 leading-relaxed">
                   {faq.answer}
                 </div>
               )}
