@@ -246,6 +246,8 @@ export function ContactForm() {
                       <SelectItem value="spring">Spring Replacement</SelectItem>
                       <SelectItem value="emergency">Emergency Repair</SelectItem>
                       <SelectItem value="maintenance">Maintenance</SelectItem>
+                      <SelectItem value="noise">Garage Door Making Weird Sound</SelectItem>
+                      <SelectItem value="unknown">I Don&apos;t Know, Please Send Help</SelectItem>
                       <SelectItem value="other">Other</SelectItem>
                     </SelectContent>
                   </Select>
