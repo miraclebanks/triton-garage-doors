@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { COMPANY } from "@/lib/config"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -77,7 +78,7 @@ export function ContactForm() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">Phone</h3>
-                  <p className="text-muted-foreground">(555) 123-4567</p>
+                  <p className="text-muted-foreground">{COMPANY.phone}</p>
                   <p className="text-sm text-muted-foreground">
                     Mon-Fri 7am-7pm, Sat 8am-5pm
                   </p>
@@ -90,7 +91,7 @@ export function ContactForm() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">Email</h3>
-                  <p className="text-muted-foreground">info@progarage.com</p>
+                  <p className="text-muted-foreground">{COMPANY.email}</p>
                   <p className="text-sm text-muted-foreground">
                     We respond within 24 hours
                   </p>

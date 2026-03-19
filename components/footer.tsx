@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { COMPANY } from "@/lib/config"
 
 export function Footer() {
   return (
@@ -79,8 +80,8 @@ export function Footer() {
           <div>
             <h3 className="font-semibold mb-4">Contact</h3>
             <ul className="space-y-2 text-primary-foreground/70">
-              <li>(555) 123-4567</li>
-              <li>info@progarage.com</li>
+              <li>{COMPANY.phone}</li>
+              <li>{COMPANY.email}</li>
               <li>Mon-Fri 7am-7pm</li>
               <li>Sat 8am-5pm</li>
             </ul>

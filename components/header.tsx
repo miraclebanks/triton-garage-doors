@@ -4,6 +4,7 @@ import Link from "next/link"
 import { Phone, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
+import { COMPANY } from "@/lib/config"
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -60,11 +61,11 @@ export function Header() {
 
           <div className="hidden md:flex items-center gap-4">
             <a
-              href="tel:+15551234567"
+              href={`tel:${COMPANY.phoneTel}`}
               className="flex items-center gap-2 text-sm font-medium text-foreground"
             >
               <Phone className="h-4 w-4" />
-              (555) 123-4567
+              {COMPANY.phone}
             </a>
             <Button asChild>
               <Link href="#contact">Get Free Quote</Link>
@@ -116,11 +117,11 @@ export function Header() {
                 Contact
               </Link>
               <a
-                href="tel:+15551234567"
+                href={`tel:${COMPANY.phoneTel}`}
                 className="flex items-center gap-2 text-sm font-medium text-foreground"
               >
                 <Phone className="h-4 w-4" />
-                (555) 123-4567
+                {COMPANY.phone}
               </a>
               <Button asChild className="w-fit">
                 <Link href="#contact" onClick={() => setMobileMenuOpen(false)}>

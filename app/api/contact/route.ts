@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import { z } from "zod"
+import { COMPANY } from "@/lib/config"
 
 const contactSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
@@ -23,7 +24,7 @@ export async function POST(request: Request) {
     })
 
     // TODO: Add email sending here, e.g.:
-    // await sendEmail({ to: "info@progarage.com", subject: "New Quote Request", data })
+    // await sendEmail({ to: COMPANY.email, subject: "New Quote Request", data })
 
     return NextResponse.json({ success: true }, { status: 200 })
   } catch (error) {
