@@ -40,7 +40,7 @@ export function Services() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <section id="services" className="bg-background py-20 lg:py-28">
+    <section id="services" className="bg-background py-16 lg:py-20 border-t border-border">
       <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
 
         {/* Section header */}

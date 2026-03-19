@@ -17,7 +17,7 @@ const stats = [
 
 export function About() {
   return (
-    <section id="about" className="py-20 lg:py-28 bg-background">
+    <section id="about" className="py-16 lg:py-20 bg-background">
       <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
 
         {/* Stat bar */}
