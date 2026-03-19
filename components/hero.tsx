@@ -79,7 +79,7 @@ export function Hero() {
         <div className="mt-16 pt-8 border-t border-primary-foreground/10 grid grid-cols-2 sm:grid-cols-4 gap-8">
           {stats.map((s) => (
             <div key={s.label}>
-              <div className="text-3xl font-extrabold text-[oklch(0.72_0.08_52)]">{s.value}</div>
+              <div className="text-3xl font-extrabold text-[oklch(0.82_0.10_230)]">{s.value}</div>
               <div className="text-xs text-primary-foreground/50 uppercase tracking-widest mt-1">{s.label}</div>
             </div>
           ))}

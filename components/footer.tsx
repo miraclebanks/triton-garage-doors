@@ -20,7 +20,7 @@ export function Footer() {
                 </svg>
               </div>
               <span className="text-xl font-extrabold tracking-tight">
-                Triton <span className="text-[oklch(0.72_0.08_52)]">Garage Doors</span>
+                Triton <span className="text-[oklch(0.82_0.10_230)]">Garage Doors</span>
               </span>
             </div>
             <p className="text-primary-foreground/50 text-sm max-w-sm leading-relaxed">
