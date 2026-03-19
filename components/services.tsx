@@ -35,53 +35,56 @@ const services = [
 
 export function Services() {
   return (
-    <section id="services" className="py-20 lg:py-28 bg-card">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="services" className="bg-background">
+      <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
 
-        {/* Header — left-aligned */}
-        <div className="mb-14">
-          <p className="text-xs font-bold uppercase tracking-widest text-accent mb-2">
-            What We Do
-          </p>
-          <h2 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
-            Services We Offer
-          </h2>
-          <p className="mt-3 text-muted-foreground max-w-xl">
-            From a broken spring to a full new door — our certified technicians handle it all,
-            on time and on budget.
+        {/* Section header */}
+        <div className="py-16 border-b border-border flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-accent mb-3">What We Do</p>
+            <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tighter uppercase text-foreground">
+              Our Services
+            </h2>
+          </div>
+          <p className="text-muted-foreground max-w-xs text-sm leading-relaxed">
+            From a broken spring to a full new door — we handle it all, on time and on budget.
           </p>
         </div>
 
-        {/* Service grid — 2 columns with numbered accent */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border rounded-xl overflow-hidden shadow-sm">
+        {/* Service rows */}
+        <div>
           {services.map((service, i) => (
             <div
               key={service.title}
-              className={`group flex gap-5 p-7 bg-background hover:bg-secondary/40 transition-colors ${
-                services.length % 2 !== 0 && i === services.length - 1
-                  ? "md:col-span-2"
-                  : ""
-              }`}
+              className="group grid grid-cols-[3rem_1fr] lg:grid-cols-[6rem_1fr_1fr] gap-6 lg:gap-12 py-8 border-b border-border hover:bg-secondary/30 transition-colors px-2 -mx-2"
             >
-              <div className="shrink-0 flex flex-col items-center gap-3">
-                <span className="text-xs font-bold text-accent/50 tabular-nums">
+              {/* Number */}
+              <div className="flex items-start pt-1">
+                <span className="text-xs font-bold text-accent/60 tabular-nums tracking-widest">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <div className="h-10 w-10 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                  <service.icon className="h-5 w-5 text-accent" />
-                </div>
               </div>
-              <div>
-                <h3 className="text-base font-bold text-foreground mb-1.5">
+
+              {/* Title + icon */}
+              <div className="flex items-start gap-4">
+                <div className="shrink-0 h-10 w-10 rounded bg-primary flex items-center justify-center group-hover:bg-accent/90 transition-colors mt-0.5">
+                  <service.icon className="h-5 w-5 text-primary-foreground" />
+                </div>
+                <h3 className="text-xl font-extrabold tracking-tight text-foreground uppercase leading-tight mt-1.5">
                   {service.title}
                 </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {service.description}
-                </p>
               </div>
+
+              {/* Description */}
+              <p className="text-muted-foreground leading-relaxed text-sm col-start-2 lg:col-start-3 lg:mt-1.5 pl-14 lg:pl-0">
+                {service.description}
+              </p>
             </div>
           ))}
         </div>
+
+        {/* Bottom padding */}
+        <div className="py-8" />
       </div>
     </section>
   )

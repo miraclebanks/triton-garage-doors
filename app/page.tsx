@@ -1,5 +1,6 @@
 import { Header } from "@/components/header"
 import { CallBanner } from "@/components/call-banner"
+import { MobileCallBar } from "@/components/mobile-call-bar"
 import { Hero } from "@/components/hero"
 import { Services } from "@/components/services"
 import { About } from "@/components/about"
@@ -22,6 +23,7 @@ export default function Home() {
         <ContactForm />
       </main>
       <Footer />
+      <MobileCallBar />
     </div>
   )
 }

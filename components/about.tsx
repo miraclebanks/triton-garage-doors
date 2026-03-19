@@ -18,13 +18,13 @@ const stats = [
 export function About() {
   return (
     <section id="about" className="py-20 lg:py-28 bg-background">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
 
         {/* Stat bar */}
         <div className="grid grid-cols-3 gap-4 mb-16 rounded-xl bg-primary text-primary-foreground p-8 text-center">
           {stats.map((s) => (
             <div key={s.label}>
-              <div className="text-4xl font-extrabold text-accent">{s.value}</div>
+              <div className="text-5xl font-extrabold text-[oklch(0.72_0.08_52)]">{s.value}</div>
               <div className="text-sm text-primary-foreground/60 mt-1">{s.label}</div>
             </div>
           ))}
@@ -33,11 +33,11 @@ export function About() {
         {/* Body */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div>
-            <p className="text-xs font-bold uppercase tracking-widest text-accent mb-2">
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-accent mb-3">
               About Us
             </p>
-            <h2 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl text-balance">
-              Why Homeowners Choose Triton
+            <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tighter uppercase text-foreground">
+              Why Choose Triton
             </h2>
             <p className="mt-4 text-muted-foreground leading-relaxed">
               For over 8 years, Triton Garage Doors has been the go-to choice for garage
