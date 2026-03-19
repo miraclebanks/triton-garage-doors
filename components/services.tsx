@@ -56,29 +56,36 @@ export function Services() {
           {services.map((service, i) => (
             <div
               key={service.title}
-              className="group grid grid-cols-[3rem_1fr] lg:grid-cols-[6rem_1fr_1fr] gap-6 lg:gap-12 py-8 border-b border-border hover:bg-secondary/30 transition-colors px-2 -mx-2"
+              className="group py-8 border-b border-border hover:bg-secondary/30 transition-colors px-2 -mx-2"
             >
-              {/* Number */}
-              <div className="flex items-start pt-1">
-                <span className="text-sm font-bold text-accent/60 tabular-nums tracking-widest">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-              </div>
+              {/* Mobile: stacked card. Desktop: 3-col row */}
+              <div className="flex flex-col sm:grid sm:grid-cols-[6rem_1fr_1fr] sm:gap-12">
 
-              {/* Title + icon */}
-              <div className="flex items-start gap-4">
-                <div className="shrink-0 h-10 w-10 rounded bg-primary flex items-center justify-center group-hover:bg-accent/90 transition-colors mt-0.5">
-                  <service.icon className="h-5 w-5 text-primary-foreground" />
+                {/* Number */}
+                <div className="hidden sm:flex items-start pt-1">
+                  <span className="text-sm font-bold text-accent/60 tabular-nums tracking-widest">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                 </div>
-                <h3 className="text-xl font-extrabold tracking-tight text-foreground uppercase leading-tight mt-1.5">
-                  {service.title}
-                </h3>
-              </div>
 
-              {/* Description */}
-              <p className="text-muted-foreground leading-relaxed text-lg font-bold col-start-2 lg:col-start-3 lg:mt-1.5 pl-14 lg:pl-0">
-                {service.description}
-              </p>
+                {/* Title + icon */}
+                <div className="flex items-center gap-4 mb-3 sm:mb-0 sm:items-start">
+                  <span className="text-sm font-bold text-accent/60 tabular-nums tracking-widest sm:hidden">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div className="shrink-0 h-10 w-10 rounded bg-primary flex items-center justify-center group-hover:bg-accent/90 transition-colors">
+                    <service.icon className="h-5 w-5 text-primary-foreground" />
+                  </div>
+                  <h3 className="text-xl font-extrabold tracking-tight text-foreground uppercase leading-tight">
+                    {service.title}
+                  </h3>
+                </div>
+
+                {/* Description */}
+                <p className="text-muted-foreground leading-relaxed text-lg font-bold sm:mt-1.5">
+                  {service.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>
