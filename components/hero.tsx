@@ -13,7 +13,7 @@ export function Hero() {
     <section className="relative bg-primary text-primary-foreground overflow-hidden">
 
       {/* Background texture lines */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{
         backgroundImage: "repeating-linear-gradient(90deg, currentColor 0px, currentColor 1px, transparent 1px, transparent 80px)",
       }} />
 
