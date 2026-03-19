@@ -1,4 +1,3 @@
-import Link from "next/link"
 import { ArrowRight, PhoneCall, Star } from "lucide-react"
 import { COMPANY } from "@/lib/config"
 
@@ -48,16 +47,16 @@ export function Hero() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 lg:mb-0.5">
-            <Link
+            <a
               href="#contact"
               className="inline-flex items-center justify-center gap-2 bg-accent text-accent-foreground font-bold px-7 py-3.5 rounded hover:bg-accent/90 transition-colors text-base uppercase tracking-wide"
             >
               Request Service
               <ArrowRight className="h-4 w-4" />
-            </Link>
+            </a>
             <a
               href={`tel:${COMPANY.phoneTel}`}
-              className="inline-flex items-center justify-center gap-2 border border-primary-foreground/20 text-primary-foreground font-bold px-7 py-3.5 rounded hover:border-primary-foreground/50 hover:bg-primary-foreground/5 transition-colors text-base uppercase tracking-wide"
+              className="inline-flex items-center justify-center gap-2 bg-white text-primary font-bold px-7 py-3.5 rounded hover:bg-white/90 transition-colors text-base uppercase tracking-wide"
             >
               <PhoneCall className="h-4 w-4" />
               Call Now

@@ -38,7 +38,7 @@ export function Header() {
               <Link
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="text-sm font-medium text-primary-foreground/60 hover:text-primary-foreground transition-colors"
+                className="text-[1.05rem] font-bold text-primary-foreground/70 hover:text-primary-foreground transition-colors"
               >
                 {item}
               </Link>
@@ -46,13 +46,16 @@ export function Header() {
           </nav>
 
           {/* Desktop CTA */}
-          <div className={scrolled ? "hidden" : "hidden md:flex items-center gap-4"}>
-            <a href={`tel:${COMPANY.phoneTel}`} className="text-sm font-medium text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+          <div className={scrolled ? "hidden" : "hidden md:flex items-center gap-3"}>
+            <a
+              href={`tel:${COMPANY.phoneTel}`}
+              className="bg-white text-primary text-[1.05rem] font-bold px-4 py-2 rounded hover:bg-white/90 transition-colors"
+            >
               Call Now
             </a>
             <Link
               href="#contact"
-              className="bg-accent text-accent-foreground text-sm font-bold px-4 py-2 rounded hover:bg-accent/90 transition-colors"
+              className="bg-accent text-accent-foreground text-[1.05rem] font-bold px-4 py-2 rounded hover:bg-accent/90 transition-colors"
             >
               Book Service
             </Link>
@@ -76,7 +79,7 @@ export function Header() {
                 <Link
                   key={item}
                   href={`#${item.toLowerCase()}`}
-                  className="text-sm font-medium text-primary-foreground/70 hover:text-primary-foreground transition-colors"
+                  className="text-[1.05rem] font-bold text-primary-foreground/70 hover:text-primary-foreground transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item}
