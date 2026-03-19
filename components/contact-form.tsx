@@ -14,10 +14,10 @@ import {
 import { MapPin, Phone, Mail, Clock, CheckCircle2, ArrowRight } from "lucide-react"
 
 const contactDetails = [
-  { icon: Phone, label: "Phone", value: "Call Now", sub: "Mon–Fri 7am–5pm" },
-  { icon: Mail, label: "Email", value: COMPANY.email, sub: "We respond within 24 hours" },
-  { icon: MapPin, label: "Service Area", value: "Orange County, CA", sub: "Including surrounding cities" },
-  { icon: Clock, label: "Hours", value: "Mon–Fri 7am–5pm", sub: null },
+  { icon: Phone, label: "Phone", value: "Call Now", href: `tel:${COMPANY.phoneTel}`, sub: "Mon–Fri 7am–5pm" },
+  { icon: Mail, label: "Email", value: COMPANY.email, href: `mailto:${COMPANY.email}`, sub: "We respond within 24 hours" },
+  { icon: MapPin, label: "Service Area", value: "Orange County, CA", href: null, sub: "Including surrounding cities" },
+  { icon: Clock, label: "Hours", value: "Mon–Fri 7am–5pm", href: null, sub: null },
 ]
 
 export function ContactForm() {
@@ -82,14 +82,20 @@ export function ContactForm() {
 
           {/* Contact details */}
           <div className="space-y-0 divide-y divide-border">
-            {contactDetails.map(({ icon: Icon, label, value, sub }) => (
+            {contactDetails.map(({ icon: Icon, label, value, href, sub }) => (
               <div key={label} className="flex items-start gap-4 py-5">
                 <div className="h-9 w-9 rounded bg-primary flex items-center justify-center shrink-0">
                   <Icon className="h-4 w-4 text-primary-foreground" />
                 </div>
                 <div>
                   <p className="text-xs font-bold uppercase tracking-widest text-accent mb-0.5">{label}</p>
-                  <p className="text-sm font-semibold text-foreground">{value}</p>
+                  {href ? (
+                    <a href={href} className="text-sm font-semibold text-foreground hover:text-accent transition-colors underline underline-offset-2">
+                      {value}
+                    </a>
+                  ) : (
+                    <p className="text-sm font-semibold text-foreground">{value}</p>
+                  )}
                   {sub && <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>}
                 </div>
               </div>
