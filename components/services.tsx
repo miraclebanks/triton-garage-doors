@@ -47,7 +47,7 @@ export function Services() {
             </h2>
           </div>
           <p className="text-muted-foreground text-sm leading-relaxed border border-border rounded px-4 py-3 bg-card max-w-xs">
-            From a broken spring to a full new door — we handle it all, on time and on budget.
+            From a broken spring to a full new door, we handle it all, on time and on budget.
           </p>
         </div>
 

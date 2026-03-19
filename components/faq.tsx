@@ -32,17 +32,17 @@ const faqs = [
   {
     question: "Is it safe to use my garage door if a spring is broken?",
     answer:
-      "No — operating a garage door with a broken spring is dangerous and can cause further damage to the opener, cables, and door panels. If you suspect a broken spring, stop using the door immediately and give us a call.",
+      "No. Operating a garage door with a broken spring is dangerous and can cause further damage to the opener, cables, and door panels. If you suspect a broken spring, stop using the door immediately and give us a call.",
   },
   {
     question: "What areas do you serve?",
     answer:
-      "We serve Orange County, CA and surrounding cities. Call us or use the contact form to confirm coverage in your specific city — we'll let you know right away if we can get to you.",
+      "We serve Orange County, CA and surrounding cities. Call us or use the contact form to confirm coverage in your specific city and we'll let you know right away.",
   },
   {
     question: "Do I need to be home during the service?",
     answer:
-      "For most repairs, yes — we'll need access to the garage and may have questions for you along the way. Just let us know your situation when you book.",
+      "For most repairs, yes. We'll need access to the garage and may have questions for you along the way. Just let us know your situation when you book.",
   },
 ]
 

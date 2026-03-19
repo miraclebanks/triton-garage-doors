@@ -25,7 +25,7 @@ export function Hero() {
 
         {/* Eyebrow */}
         <p className="text-xs font-bold uppercase tracking-[0.3em] text-accent mb-8">
-          Orange County, CA — Est. 2016
+          Orange County, CA · Est. 2016
         </p>
 
         {/* Headline */}
@@ -72,7 +72,7 @@ export function Hero() {
               <Star key={i} className="h-3.5 w-3.5 fill-accent text-accent" />
             ))}
           </div>
-          <span>Rated 4.9/5 — 500+ reviews</span>
+          <span>Rated 4.9/5 · 500+ reviews</span>
         </div>
 
         {/* Stats bar */}

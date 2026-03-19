@@ -67,7 +67,7 @@ export function Testimonials() {
             What Our Customers Say
           </h2>
           <p className="mt-4 text-lg text-muted-foreground text-pretty">
-            Don't just take our word for it — hear from homeowners who've
+            Don't just take our word for it. Hear from homeowners who've
             experienced our service firsthand.
           </p>
         </div>
