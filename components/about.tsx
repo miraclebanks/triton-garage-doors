@@ -21,7 +21,7 @@ export function About() {
       <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
 
         {/* Stat bar */}
-        <div className="flex flex-col sm:grid sm:grid-cols-3 gap-px mb-16 rounded-xl bg-primary-foreground/10 overflow-hidden text-center">
+        <div className="flex flex-col sm:grid sm:grid-cols-3 gap-px mb-16 rounded-xl bg-primary-foreground/10 overflow-hidden text-center pb-2 sm:pb-0">
           {stats.map((s) => (
             <div key={s.label} className="bg-primary px-6 py-6 sm:py-8 flex sm:flex-col items-center sm:items-center gap-4 sm:gap-0">
               <div className="text-3xl sm:text-5xl font-extrabold text-accent w-32 sm:w-auto text-left sm:text-center">{s.value}</div>

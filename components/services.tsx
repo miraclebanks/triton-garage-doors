@@ -115,8 +115,6 @@ export function Services() {
           })}
         </div>
 
-        {/* Bottom padding */}
-        <div className="py-8" />
       </div>
     </section>
   )

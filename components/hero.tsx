@@ -10,7 +10,7 @@ const stats = [
 
 export function Hero() {
   return (
-    <section className="relative bg-primary text-primary-foreground overflow-hidden">
+    <section className="relative bg-primary text-primary-foreground overflow-hidden border-b border-primary-foreground/10">
 
       {/* Background texture lines */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{
