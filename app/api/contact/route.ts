@@ -1,9 +1,7 @@
 import { NextResponse } from "next/server"
 import { z } from "zod"
-import { Resend } from "resend"
+import nodemailer from "nodemailer"
 import { COMPANY } from "@/lib/config"
-
-const resend = new Resend(process.env.RESEND_API_KEY)
 
 const contactSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
@@ -15,18 +13,26 @@ const contactSchema = z.object({
   message: z.string().optional(),
 })
 
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_APP_PASSWORD,
+  },
+})
+
 export async function POST(request: Request) {
   try {
     const body = await request.json()
     const data = contactSchema.parse(body)
 
-    await resend.emails.send({
-      from: "Triton Garage Doors <onboarding@resend.dev>",
+    await transporter.sendMail({
+      from: `"${COMPANY.name}" <${process.env.GMAIL_USER}>`,
       to: COMPANY.notificationEmail,
       replyTo: data.email,
       subject: `New Service Request – ${data.service}`,
       html: `
-        <h2>New Service Request</h2>
+        <h2 style="font-family:sans-serif;">New Service Request</h2>
         <table style="border-collapse:collapse;width:100%;font-family:sans-serif;font-size:15px;">
           <tr><td style="padding:8px;font-weight:bold;">Name</td><td style="padding:8px;">${data.firstName} ${data.lastName}</td></tr>
           <tr style="background:#f5f5f5;"><td style="padding:8px;font-weight:bold;">Email</td><td style="padding:8px;"><a href="mailto:${data.email}">${data.email}</a></td></tr>
