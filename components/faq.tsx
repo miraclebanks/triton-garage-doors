@@ -1,9 +1,7 @@
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
+"use client"
+
+import { useState } from "react"
+import { Plus, Minus } from "lucide-react"
 
 const faqs = [
   {
@@ -49,33 +47,58 @@ const faqs = [
 ]
 
 export function FAQ() {
+  const [open, setOpen] = useState<number | null>(null)
+
   return (
-    <section id="faq" className="py-20 lg:py-28 bg-card">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance">
-            Frequently Asked Questions
-          </h2>
-          <p className="mt-4 text-lg text-muted-foreground text-pretty">
-            Got questions? We've answered the most common ones below. Don't see
-            yours? Give us a call or send us a message.
+    <section id="faq" className="bg-primary text-primary-foreground">
+      <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
+
+        {/* Header */}
+        <div className="py-16 border-b border-primary-foreground/10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-accent mb-3">Got Questions</p>
+            <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tighter uppercase text-primary-foreground">
+              FAQ
+            </h2>
+          </div>
+          <p className="text-primary-foreground/50 max-w-xs text-sm leading-relaxed">
+            Don't see your question? Give us a call and we'll answer it directly.
           </p>
         </div>
 
-        <div className="max-w-3xl mx-auto">
-          <Accordion type="single" collapsible className="rounded-xl bg-background border border-border px-6">
-            {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger className="text-base font-medium text-foreground hover:no-underline hover:text-accent">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed">
+        {/* FAQ rows */}
+        <div className="pb-8">
+          {faqs.map((faq, i) => (
+            <div key={i} className="border-b border-primary-foreground/10">
+              <button
+                className="w-full flex items-start justify-between gap-6 py-6 text-left group"
+                onClick={() => setOpen(open === i ? null : i)}
+              >
+                <div className="flex items-start gap-5">
+                  <span className="text-xs font-bold text-accent/50 tabular-nums tracking-widest shrink-0 mt-1">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-base font-bold uppercase tracking-tight text-primary-foreground group-hover:text-accent transition-colors">
+                    {faq.question}
+                  </span>
+                </div>
+                <span className="shrink-0 h-6 w-6 rounded border border-primary-foreground/20 flex items-center justify-center mt-0.5">
+                  {open === i
+                    ? <Minus className="h-3.5 w-3.5 text-accent" />
+                    : <Plus className="h-3.5 w-3.5 text-primary-foreground/60" />
+                  }
+                </span>
+              </button>
+
+              {open === i && (
+                <div className="pl-10 pb-6 text-sm text-primary-foreground/60 leading-relaxed max-w-2xl">
                   {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+                </div>
+              )}
+            </div>
+          ))}
         </div>
+
       </div>
     </section>
   )
