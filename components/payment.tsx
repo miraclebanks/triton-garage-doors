@@ -49,15 +49,13 @@ export function Payment() {
             {methods.map((m) => (
               <div
                 key={m.name}
-                className="flex items-center gap-4 bg-card border-2 border-border rounded-xl px-5 py-5"
+                className="flex flex-col items-center text-center gap-3 bg-card border-2 border-border rounded-xl px-4 py-6"
               >
                 <div className={`h-12 w-12 rounded-lg ${m.color} flex items-center justify-center shrink-0`}>
                   <m.icon className="h-6 w-6 text-white" />
                 </div>
-                <div>
-                  <p className="text-xl font-extrabold text-foreground">{m.name}</p>
-                  <p className="text-sm font-bold text-muted-foreground mt-0.5">{m.detail}</p>
-                </div>
+                <p className="text-lg font-extrabold text-foreground leading-tight">{m.name}</p>
+                <p className="text-sm font-bold text-muted-foreground leading-tight">{m.detail}</p>
               </div>
             ))}
           </div>
