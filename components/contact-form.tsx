@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { COMPANY } from "@/lib/config"
-import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import {
@@ -12,7 +11,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { MapPin, Phone, Mail, Clock, CheckCircle2 } from "lucide-react"
+import { MapPin, Phone, Mail, Clock, CheckCircle2, ArrowRight } from "lucide-react"
+
+const contactDetails = [
+  { icon: Phone, label: "Phone", value: COMPANY.phone, sub: "Mon–Fri 7am–5pm" },
+  { icon: Mail, label: "Email", value: COMPANY.email, sub: "We respond within 24 hours" },
+  { icon: MapPin, label: "Service Area", value: "Orange County, CA", sub: "Including surrounding cities" },
+  { icon: Clock, label: "Hours", value: "Mon–Fri 7am–5pm", sub: null },
+]
 
 export function ContactForm() {
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -42,12 +48,10 @@ export function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       })
-
       if (!res.ok) {
         const json = await res.json()
         throw new Error(json.message ?? "Submission failed. Please try again.")
       }
-
       setIsSubmitted(true)
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.")
@@ -57,251 +61,133 @@ export function ContactForm() {
   }
 
   return (
-    <section id="contact" className="py-20 lg:py-28 bg-card">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance">
-            Request Service
-          </h2>
-          <p className="mt-4 text-lg text-muted-foreground text-pretty">
-            Fill out the form below and we'll get back to you with
-            a detailed estimate for your project.
+    <section id="contact" className="bg-background">
+      <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
+
+        {/* Header */}
+        <div className="py-16 border-b border-border flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-accent mb-3">Get In Touch</p>
+            <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tighter uppercase text-foreground">
+              Request Service
+            </h2>
+          </div>
+          <p className="text-muted-foreground max-w-xs text-sm leading-relaxed border border-border rounded px-4 py-3 bg-card">
+            Fill out the form and we'll get back to you with an estimate for your project.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div className="order-2 lg:order-1">
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="h-10 w-10 rounded-lg bg-secondary flex items-center justify-center shrink-0">
-                  <Phone className="h-5 w-5 text-accent" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-foreground">Phone</h3>
-                  <p className="text-muted-foreground">{COMPANY.phone}</p>
-                  <p className="text-sm text-muted-foreground">
-                    Mon–Fri 7am–5pm
-                  </p>
-                </div>
-              </div>
+        {/* Body */}
+        <div className="py-14 grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12">
 
-              <div className="flex items-start gap-4">
-                <div className="h-10 w-10 rounded-lg bg-secondary flex items-center justify-center shrink-0">
-                  <Mail className="h-5 w-5 text-accent" />
+          {/* Contact details */}
+          <div className="space-y-0 divide-y divide-border">
+            {contactDetails.map(({ icon: Icon, label, value, sub }) => (
+              <div key={label} className="flex items-start gap-4 py-5">
+                <div className="h-9 w-9 rounded bg-primary flex items-center justify-center shrink-0">
+                  <Icon className="h-4 w-4 text-primary-foreground" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground">Email</h3>
-                  <p className="text-muted-foreground">{COMPANY.email}</p>
-                  <p className="text-sm text-muted-foreground">
-                    We respond within 24 hours
-                  </p>
+                  <p className="text-xs font-bold uppercase tracking-widest text-accent mb-0.5">{label}</p>
+                  <p className="text-sm font-semibold text-foreground">{value}</p>
+                  {sub && <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>}
                 </div>
               </div>
-
-              <div className="flex items-start gap-4">
-                <div className="h-10 w-10 rounded-lg bg-secondary flex items-center justify-center shrink-0">
-                  <MapPin className="h-5 w-5 text-accent" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-foreground">Service Area</h3>
-                  <p className="text-muted-foreground">
-                    Serving Orange County, CA
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    Including surrounding cities
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="h-10 w-10 rounded-lg bg-secondary flex items-center justify-center shrink-0">
-                  <Clock className="h-5 w-5 text-accent" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-foreground">Hours</h3>
-                  <p className="text-muted-foreground">Mon–Fri 7am–5pm</p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
 
-          <div className="order-1 lg:order-2">
-            {isSubmitted ? (
-              <div className="rounded-xl bg-background border border-border p-8 text-center">
-                <div className="h-16 w-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle2 className="h-8 w-8 text-accent" />
-                </div>
-                <h3 className="text-xl font-semibold text-foreground mb-2">
-                  Thank You!
-                </h3>
-                <p className="text-muted-foreground">
-                  We've received your request and will be in touch shortly with an estimate.
-                </p>
-                <Button
-                  className="mt-6"
-                  variant="outline"
-                  onClick={() => {
-                    setIsSubmitted(false)
-                    setService("")
-                  }}
-                >
-                  Submit Another Request
-                </Button>
+          {/* Form */}
+          {isSubmitted ? (
+            <div className="border border-border rounded p-10 flex flex-col items-center justify-center text-center gap-4">
+              <div className="h-14 w-14 rounded bg-accent/10 flex items-center justify-center">
+                <CheckCircle2 className="h-7 w-7 text-accent" />
               </div>
-            ) : (
-              <form
-                onSubmit={handleSubmit}
-                className="rounded-xl bg-background border border-border p-6 sm:p-8 space-y-6"
+              <h3 className="text-2xl font-extrabold uppercase tracking-tight text-foreground">Request Received</h3>
+              <p className="text-muted-foreground text-sm max-w-sm">
+                We've received your request and will be in touch shortly with an estimate.
+              </p>
+              <button
+                onClick={() => { setIsSubmitted(false); setService("") }}
+                className="mt-2 text-xs font-bold uppercase tracking-widest text-accent hover:opacity-70 transition-opacity"
               >
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="firstName"
-                      className="text-sm font-medium text-foreground"
-                    >
-                      First Name
-                    </label>
-                    <Input
-                      id="firstName"
-                      name="firstName"
-                      placeholder="John"
-                      required
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="lastName"
-                      className="text-sm font-medium text-foreground"
-                    >
-                      Last Name
-                    </label>
-                    <Input
-                      id="lastName"
-                      name="lastName"
-                      placeholder="Doe"
-                      required
-                    />
-                  </div>
-                </div>
+                Submit Another
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-5">
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="email"
-                      className="text-sm font-medium text-foreground"
-                    >
-                      Email
-                    </label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      placeholder="john@example.com"
-                      required
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="phone"
-                      className="text-sm font-medium text-foreground"
-                    >
-                      Phone
-                    </label>
-                    <Input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      placeholder="(555) 000-0000"
-                      required
-                    />
-                  </div>
-                </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <Field label="First Name" htmlFor="firstName">
+                  <Input id="firstName" name="firstName" placeholder="John" required />
+                </Field>
+                <Field label="Last Name" htmlFor="lastName">
+                  <Input id="lastName" name="lastName" placeholder="Doe" required />
+                </Field>
+              </div>
 
-                <div className="space-y-2">
-                  <label
-                    htmlFor="service"
-                    className="text-sm font-medium text-foreground"
-                  >
-                    Service Needed
-                  </label>
-                  <Select
-                    name="service"
-                    required
-                    value={service}
-                    onValueChange={setService}
-                  >
-                    <SelectTrigger id="service">
-                      <SelectValue placeholder="Select a service" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="repair">Garage Door Repair</SelectItem>
-                      <SelectItem value="installation">
-                        New Door Installation
-                      </SelectItem>
-                      <SelectItem value="opener">Opener Services</SelectItem>
-                      <SelectItem value="spring">Spring Replacement</SelectItem>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <Field label="Email" htmlFor="email">
+                  <Input id="email" name="email" type="email" placeholder="john@example.com" required />
+                </Field>
+                <Field label="Phone" htmlFor="phone">
+                  <Input id="phone" name="phone" type="tel" placeholder="(555) 000-0000" required />
+                </Field>
+              </div>
 
+              <Field label="Service Needed" htmlFor="service">
+                <Select name="service" required value={service} onValueChange={setService}>
+                  <SelectTrigger id="service">
+                    <SelectValue placeholder="Select a service" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="repair">Garage Door Repair</SelectItem>
+                    <SelectItem value="installation">New Door Installation</SelectItem>
+                    <SelectItem value="opener">Opener Services</SelectItem>
+                    <SelectItem value="spring">Spring Replacement</SelectItem>
+                    <SelectItem value="noise">Garage Door Making Weird Sound</SelectItem>
+                    <SelectItem value="unknown">I Don&apos;t Know, Please Send Help</SelectItem>
+                    <SelectItem value="other">Other</SelectItem>
+                  </SelectContent>
+                </Select>
+              </Field>
 
-                      <SelectItem value="noise">Garage Door Making Weird Sound</SelectItem>
-                      <SelectItem value="unknown">I Don&apos;t Know, Please Send Help</SelectItem>
-                      <SelectItem value="other">Other</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+              <Field label="Service Address" htmlFor="address">
+                <Input id="address" name="address" placeholder="123 Main St, City, State" required />
+              </Field>
 
-                <div className="space-y-2">
-                  <label
-                    htmlFor="address"
-                    className="text-sm font-medium text-foreground"
-                  >
-                    Service Address
-                  </label>
-                  <Input
-                    id="address"
-                    name="address"
-                    placeholder="123 Main St, City, State"
-                    required
-                  />
-                </div>
+              <Field label="Describe Your Issue" htmlFor="message">
+                <Textarea id="message" name="message" placeholder="Tell us what's going on with your garage door..." rows={4} />
+              </Field>
 
-                <div className="space-y-2">
-                  <label
-                    htmlFor="message"
-                    className="text-sm font-medium text-foreground"
-                  >
-                    Describe Your Issue
-                  </label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    placeholder="Please describe the problem you're experiencing with your garage door..."
-                    rows={4}
-                  />
-                </div>
+              {error && <p className="text-sm text-destructive">{error}</p>}
 
-                {error && (
-                  <p className="text-sm text-destructive text-center">{error}</p>
-                )}
+              <button
+                type="submit"
+                disabled={isSubmitting || !service}
+                className="w-full flex items-center justify-center gap-2 bg-primary text-primary-foreground font-bold uppercase tracking-widest text-sm px-8 py-4 hover:bg-accent hover:text-accent-foreground transition-colors disabled:opacity-40"
+              >
+                {isSubmitting ? "Submitting..." : "Request Service"}
+                <ArrowRight className="h-4 w-4" />
+              </button>
 
-                <Button
-                  type="submit"
-                  className="w-full"
-                  size="lg"
-                  disabled={isSubmitting || !service}
-                >
-                  {isSubmitting ? "Submitting..." : "Request Service"}
-                </Button>
-
-                <p className="text-xs text-center text-muted-foreground">
-                  By submitting this form, you agree to be contacted about your
-                  service request. We respect your privacy and never share your
-                  information.
-                </p>
-              </form>
-            )}
-          </div>
+              <p className="text-xs text-muted-foreground">
+                By submitting, you agree to be contacted about your service request. We never share your information.
+              </p>
+            </form>
+          )}
         </div>
       </div>
     </section>
+  )
+}
+
+function Field({ label, htmlFor, children }: { label: string; htmlFor: string; children: React.ReactNode }) {
+  return (
+    <div className="space-y-1.5">
+      <label htmlFor={htmlFor} className="text-xs font-bold uppercase tracking-widest text-foreground">
+        {label}
+      </label>
+      {children}
+    </div>
   )
 }
