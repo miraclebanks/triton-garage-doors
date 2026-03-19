@@ -1,4 +1,7 @@
-import { Settings, DoorOpen, Gauge, Cog, AlertTriangle } from "lucide-react"
+"use client"
+
+import { useState } from "react"
+import { Settings, DoorOpen, Gauge, Cog, AlertTriangle, ChevronDown } from "lucide-react"
 
 const services = [
   {
@@ -34,6 +37,8 @@ const services = [
 ]
 
 export function Services() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+
   return (
     <section id="services" className="bg-background">
       <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
@@ -53,41 +58,61 @@ export function Services() {
 
         {/* Service rows */}
         <div>
-          {services.map((service, i) => (
-            <div
-              key={service.title}
-              className="group py-8 border-b border-border hover:bg-secondary/30 transition-colors px-2 -mx-2"
-            >
-              {/* Mobile: stacked card. Desktop: 3-col row */}
-              <div className="flex flex-col sm:grid sm:grid-cols-[6rem_1fr_1fr] sm:gap-12">
-
-                {/* Number */}
-                <div className="hidden sm:flex items-start pt-1">
-                  <span className="text-sm font-bold text-accent/60 tabular-nums tracking-widest">
+          {services.map((service, i) => {
+            const isOpen = openIndex === i
+            return (
+              <div
+                key={service.title}
+                className="group border-b border-border hover:bg-secondary/30 transition-colors px-2 -mx-2"
+              >
+                {/* Mobile: tappable header + collapsible description */}
+                <button
+                  className="sm:hidden w-full flex items-center gap-4 py-5 text-left"
+                  onClick={() => setOpenIndex(isOpen ? null : i)}
+                >
+                  <span className="text-sm font-bold text-accent/60 tabular-nums tracking-widest w-6 shrink-0">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                </div>
-
-                {/* Title + icon */}
-                <div className="flex items-center gap-4 mb-3 sm:mb-0 sm:items-start">
-                  <span className="text-sm font-bold text-accent/60 tabular-nums tracking-widest sm:hidden">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <div className="shrink-0 h-10 w-10 rounded bg-primary flex items-center justify-center group-hover:bg-accent/90 transition-colors">
+                  <div className="shrink-0 h-10 w-10 rounded bg-primary flex items-center justify-center">
                     <service.icon className="h-5 w-5 text-primary-foreground" />
                   </div>
-                  <h3 className="text-xl font-extrabold tracking-tight text-foreground uppercase leading-tight">
+                  <h3 className="flex-1 text-xl font-extrabold tracking-tight text-foreground uppercase leading-tight">
                     {service.title}
                   </h3>
-                </div>
+                  <ChevronDown
+                    className={`h-5 w-5 text-accent shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                  />
+                </button>
 
-                {/* Description */}
-                <p className="text-muted-foreground leading-relaxed text-lg font-bold sm:mt-1.5">
-                  {service.description}
-                </p>
+                {/* Mobile: collapsible description */}
+                {isOpen && (
+                  <p className="sm:hidden text-muted-foreground leading-relaxed text-lg font-bold pb-5 pl-[4.5rem]">
+                    {service.description}
+                  </p>
+                )}
+
+                {/* Desktop: always-visible 3-col row */}
+                <div className="hidden sm:grid sm:grid-cols-[6rem_1fr_1fr] sm:gap-12 py-8">
+                  <div className="flex items-start pt-1">
+                    <span className="text-sm font-bold text-accent/60 tabular-nums tracking-widest">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <div className="shrink-0 h-10 w-10 rounded bg-primary flex items-center justify-center group-hover:bg-accent/90 transition-colors mt-0.5">
+                      <service.icon className="h-5 w-5 text-primary-foreground" />
+                    </div>
+                    <h3 className="text-xl font-extrabold tracking-tight text-foreground uppercase leading-tight mt-1.5">
+                      {service.title}
+                    </h3>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed text-lg font-bold mt-1.5">
+                    {service.description}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
 
         {/* Bottom padding */}
