@@ -1,4 +1,4 @@
-import { CreditCard, Smartphone, Banknote, Building2 } from "lucide-react"
+import { CreditCard, Smartphone, Building2 } from "lucide-react"
 
 const methods = [
   {
@@ -13,13 +13,7 @@ const methods = [
     detail: "Visa, Mastercard, Amex, Discover",
     color: "bg-[oklch(0.38_0.14_258)]",
   },
-  {
-    icon: Banknote,
-    name: "Cash",
-    detail: "Always accepted",
-    color: "bg-[oklch(0.42_0.14_155)]",
-  },
-  {
+{
     icon: Building2,
     name: "Debit Card",
     detail: "All major debit cards",
