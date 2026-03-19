@@ -65,7 +65,7 @@ export function Hero() {
         </div>
 
         {/* Star rating */}
-        <div className="mt-6 flex items-center gap-2 text-sm text-primary-foreground/50">
+        <div className="mt-6 flex items-center gap-2 text-sm text-accent">
           <div className="flex">
             {[...Array(5)].map((_, i) => (
               <Star key={i} className="h-3.5 w-3.5 fill-accent text-accent" />
@@ -78,7 +78,7 @@ export function Hero() {
         <div className="mt-16 pt-8 border-t border-primary-foreground/10 grid grid-cols-2 sm:grid-cols-4 gap-8">
           {stats.map((s) => (
             <div key={s.label}>
-              <div className="text-3xl font-extrabold text-[oklch(0.88_0.08_240)]">{s.value}</div>
+              <div className="text-3xl font-extrabold text-accent">{s.value}</div>
               <div className="text-xs text-primary-foreground/50 uppercase tracking-widest mt-1">{s.label}</div>
             </div>
           ))}

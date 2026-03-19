@@ -24,7 +24,7 @@ export function About() {
         <div className="grid grid-cols-3 gap-4 mb-16 rounded-xl bg-primary text-primary-foreground p-8 text-center">
           {stats.map((s) => (
             <div key={s.label}>
-              <div className="text-5xl font-extrabold text-[oklch(0.88_0.08_240)]">{s.value}</div>
+              <div className="text-5xl font-extrabold text-accent">{s.value}</div>
               <div className="text-base font-bold text-primary-foreground/60 mt-1">{s.label}</div>
             </div>
           ))}
