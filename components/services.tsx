@@ -76,7 +76,7 @@ export function Services() {
                   <div className="shrink-0 h-10 w-10 rounded bg-primary flex items-center justify-center">
                     <service.icon className="h-5 w-5 text-primary-foreground" />
                   </div>
-                  <h3 className="flex-1 text-xl font-extrabold tracking-tight text-foreground uppercase leading-tight">
+                  <h3 className="flex-1 text-base font-extrabold tracking-tight text-foreground uppercase leading-tight">
                     {service.title}
                   </h3>
                   <ChevronDown
