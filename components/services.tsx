@@ -41,12 +41,12 @@ export function Services() {
         {/* Section header */}
         <div className="py-16 border-b border-border flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.3em] text-accent mb-3">What We Do</p>
+            <p className="text-sm font-bold uppercase tracking-[0.3em] text-accent mb-3">What We Do</p>
             <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tighter uppercase text-foreground">
               Our Services
             </h2>
           </div>
-          <p className="text-muted-foreground text-sm leading-relaxed border border-border rounded px-4 py-3 bg-card max-w-xs">
+          <p className="text-muted-foreground text-lg font-bold leading-relaxed border border-border rounded px-4 py-3 bg-card max-w-xs">
             From a broken spring to a full new door, we handle it all, on time and on budget.
           </p>
         </div>
@@ -60,7 +60,7 @@ export function Services() {
             >
               {/* Number */}
               <div className="flex items-start pt-1">
-                <span className="text-xs font-bold text-accent/60 tabular-nums tracking-widest">
+                <span className="text-sm font-bold text-accent/60 tabular-nums tracking-widest">
                   {String(i + 1).padStart(2, "0")}
                 </span>
               </div>
@@ -76,7 +76,7 @@ export function Services() {
               </div>
 
               {/* Description */}
-              <p className="text-muted-foreground leading-relaxed text-sm col-start-2 lg:col-start-3 lg:mt-1.5 pl-14 lg:pl-0">
+              <p className="text-muted-foreground leading-relaxed text-lg font-bold col-start-2 lg:col-start-3 lg:mt-1.5 pl-14 lg:pl-0">
                 {service.description}
               </p>
             </div>

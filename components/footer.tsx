@@ -46,7 +46,7 @@ export function Footer() {
               <Link
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="text-xs font-bold uppercase tracking-widest text-primary-foreground/40 hover:text-primary-foreground transition-colors"
+                className="text-sm font-bold uppercase tracking-widest text-primary-foreground/40 hover:text-primary-foreground transition-colors"
               >
                 {item}
               </Link>
@@ -54,7 +54,7 @@ export function Footer() {
           </nav>
 
           {/* Contact + copyright */}
-          <div className="flex flex-col sm:items-end gap-1 text-xs text-primary-foreground/40">
+          <div className="flex flex-col sm:items-end gap-1 text-sm font-bold text-primary-foreground/40">
             <span>{COMPANY.email}</span>
             <span>&copy; {new Date().getFullYear()} Triton Garage Doors. All rights reserved.</span>
           </div>

@@ -24,7 +24,7 @@ export function Hero() {
       <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16 py-20 lg:py-32">
 
         {/* Eyebrow */}
-        <p className="text-xs font-bold uppercase tracking-[0.3em] text-accent mb-8">
+        <p className="text-sm font-bold uppercase tracking-[0.3em] text-accent mb-8">
           Orange County, CA · Est. 2016
         </p>
 
@@ -42,7 +42,7 @@ export function Hero() {
 
         {/* Subtext + CTAs side by side on desktop */}
         <div className="flex flex-col lg:flex-row lg:items-end gap-8 lg:gap-16">
-          <p className="text-base lg:text-lg text-primary-foreground/60 max-w-md leading-relaxed">
+          <p className="text-xl lg:text-2xl font-bold text-primary-foreground/60 max-w-md leading-relaxed">
             Repair, installation, and opener services across Orange County.
             Certified techs, upfront pricing, satisfaction guaranteed.
           </p>
@@ -50,14 +50,14 @@ export function Hero() {
           <div className="flex flex-col sm:flex-row gap-3 lg:mb-0.5">
             <Link
               href="#contact"
-              className="inline-flex items-center justify-center gap-2 bg-accent text-accent-foreground font-bold px-7 py-3.5 rounded hover:bg-accent/90 transition-colors text-sm uppercase tracking-wide"
+              className="inline-flex items-center justify-center gap-2 bg-accent text-accent-foreground font-bold px-7 py-3.5 rounded hover:bg-accent/90 transition-colors text-base uppercase tracking-wide"
             >
               Request Service
               <ArrowRight className="h-4 w-4" />
             </Link>
             <a
               href={`tel:${COMPANY.phoneTel}`}
-              className="inline-flex items-center justify-center gap-2 border border-primary-foreground/20 text-primary-foreground font-bold px-7 py-3.5 rounded hover:border-primary-foreground/50 hover:bg-primary-foreground/5 transition-colors text-sm uppercase tracking-wide"
+              className="inline-flex items-center justify-center gap-2 border border-primary-foreground/20 text-primary-foreground font-bold px-7 py-3.5 rounded hover:border-primary-foreground/50 hover:bg-primary-foreground/5 transition-colors text-base uppercase tracking-wide"
             >
               <PhoneCall className="h-4 w-4" />
               Call Now

@@ -63,10 +63,10 @@ export function Testimonials() {
     <section id="reviews" className="py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance">
+          <h2 className="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl text-balance">
             What Our Customers Say
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground text-pretty">
+          <p className="mt-4 text-xl font-bold text-muted-foreground text-pretty">
             Don't just take our word for it. Hear from homeowners who've
             experienced our service firsthand.
           </p>
@@ -79,15 +79,15 @@ export function Testimonials() {
               className="flex flex-col gap-4 rounded-xl bg-card border border-border p-6"
             >
               <StarRating rating={t.rating} />
-              <p className="text-foreground leading-relaxed flex-1">
+              <p className="text-foreground text-lg font-bold leading-relaxed flex-1">
                 &ldquo;{t.text}&rdquo;
               </p>
               <div className="border-t border-border pt-4 flex items-center justify-between">
                 <div>
-                  <p className="font-semibold text-foreground text-sm">{t.name}</p>
-                  <p className="text-xs text-muted-foreground">{t.location}</p>
+                  <p className="font-bold text-foreground text-base">{t.name}</p>
+                  <p className="text-sm font-bold text-muted-foreground">{t.location}</p>
                 </div>
-                <span className="text-xs text-accent font-medium bg-secondary px-2 py-1 rounded-full">
+                <span className="text-sm text-accent font-bold bg-secondary px-2 py-1 rounded-full">
                   {t.service}
                 </span>
               </div>
@@ -96,7 +96,7 @@ export function Testimonials() {
         </div>
 
         <div className="mt-12 text-center">
-          <p className="text-muted-foreground text-sm">
+          <p className="text-muted-foreground text-lg font-bold">
             Rated{" "}
             <span className="font-semibold text-foreground">4.9 out of 5</span>{" "}
             based on 500+ verified reviews

@@ -25,7 +25,7 @@ export function About() {
           {stats.map((s) => (
             <div key={s.label}>
               <div className="text-5xl font-extrabold text-[oklch(0.82_0.10_230)]">{s.value}</div>
-              <div className="text-sm text-primary-foreground/60 mt-1">{s.label}</div>
+              <div className="text-base font-bold text-primary-foreground/60 mt-1">{s.label}</div>
             </div>
           ))}
         </div>
@@ -33,19 +33,19 @@ export function About() {
         {/* Body */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.3em] text-accent mb-3">
+            <p className="text-sm font-bold uppercase tracking-[0.3em] text-accent mb-3">
               About Us
             </p>
             <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tighter uppercase text-foreground">
               Why Choose Triton
             </h2>
-            <p className="mt-4 text-muted-foreground leading-relaxed">
+            <p className="mt-4 text-muted-foreground text-lg font-bold leading-relaxed">
               For over 8 years, Triton Garage Doors has been the go-to choice for garage
               door services across Orange County. Our certified technicians show up on time,
               give you a straight price before starting, and don't leave until the job is
               done right.
             </p>
-            <p className="mt-4 text-muted-foreground leading-relaxed">
+            <p className="mt-4 text-muted-foreground text-lg font-bold leading-relaxed">
               We only use premium, manufacturer-approved parts and stand behind every
               repair with a full satisfaction guarantee. No pressure. No runaround.
             </p>
@@ -58,7 +58,7 @@ export function About() {
                 className="flex items-start gap-3 bg-card border border-border rounded-lg px-4 py-3"
               >
                 <CheckCircle2 className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                <span className="text-sm text-foreground">{feature}</span>
+                <span className="text-lg font-bold text-foreground">{feature}</span>
               </li>
             ))}
           </ul>
