@@ -9,12 +9,12 @@ const faqs = [
   {
     question: "How quickly can you respond to a service call?",
     answer:
-      "We offer same-day service for most repairs and are available 24/7 for emergencies. For non-urgent jobs, we can typically schedule an appointment within 1–2 business days. We'll always give you an estimated arrival window so you're not left waiting.",
+      "For most repairs we can schedule an appointment within 1–2 business days. We'll always give you an estimated arrival window so you're not left waiting.",
   },
   {
     question: "How much does a garage door repair typically cost?",
     answer:
-      "Costs vary depending on the type of repair needed. Minor fixes like sensor alignment or remote reprogramming can start around $75–$100, while spring replacements typically run $150–$350. Full door installations range widely based on the door style and material. We always provide a free, no-obligation quote before any work begins.",
+      "Costs vary depending on the type of repair needed. Minor fixes like sensor alignment or remote reprogramming can start around $75–$100, while spring replacements typically run $150–$350. Full door installations range widely based on the door style and material. We always provide a no-obligation estimate before any work begins.",
   },
   {
     question: "How long does a spring replacement take?",
@@ -34,7 +34,7 @@ const faqs = [
   {
     question: "Is it safe to use my garage door if a spring is broken?",
     answer:
-      "No — operating a garage door with a broken spring is dangerous and can cause further damage to the opener, cables, and door panels. If you suspect a broken spring, stop using the door immediately and call us. We offer emergency same-day service for exactly this situation.",
+      "No — operating a garage door with a broken spring is dangerous and can cause further damage to the opener, cables, and door panels. If you suspect a broken spring, stop using the door immediately and give us a call.",
   },
   {
     question: "What areas do you serve?",
@@ -44,7 +44,7 @@ const faqs = [
   {
     question: "Do I need to be home during the service?",
     answer:
-      "For most repairs, yes — we'll need access to the garage and may have questions for you along the way. However, for routine maintenance visits on existing plans, some customers make alternative arrangements. Just let us know your situation when you book.",
+      "For most repairs, yes — we'll need access to the garage and may have questions for you along the way. Just let us know your situation when you book.",
   },
 ]
 

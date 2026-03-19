@@ -5,7 +5,7 @@ const testimonials = [
     name: "Sarah M.",
     location: "Irvine, CA",
     rating: 5,
-    text: "Triton Garage Doors came out the same day my spring broke. The technician was professional, explained everything, and had it fixed in under an hour. Highly recommend!",
+    text: "Triton replaced my broken spring quickly and cleanly. The technician was professional, explained everything, and had it fixed in under an hour. Highly recommend!",
     service: "Spring Replacement",
   },
   {
@@ -19,15 +19,15 @@ const testimonials = [
     name: "Linda K.",
     location: "Huntington Beach, CA",
     rating: 5,
-    text: "My garage door opener stopped working at 9pm. Called Triton and they had someone out within the hour. Saved my night. Will definitely use them again.",
-    service: "Emergency Repair",
+    text: "My garage door opener stopped working and Triton got it sorted out fast. Showed up when they said they would and the price was exactly what they quoted. Will use again.",
+    service: "Opener Services",
   },
   {
     name: "David R.",
     location: "Newport Beach, CA",
     rating: 5,
-    text: "Signed up for their annual maintenance plan and it's been worth every penny. Caught a cable that was about to snap before it became an emergency.",
-    service: "Maintenance Plan",
+    text: "Had some rollers and cables replaced after my door started making noise. Quick turnaround and everything runs smooth now. Fair price too.",
+    service: "Garage Door Repair",
   },
   {
     name: "Maria G.",

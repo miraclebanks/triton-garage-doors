@@ -2,10 +2,10 @@ import { CheckCircle2 } from "lucide-react"
 
 const features = [
   "Over 8 years of industry experience",
-  "Fully licensed and insured technicians",
+  "Certified, experienced technicians",
   "Transparent pricing with no hidden fees",
   "Satisfaction guarantee on all work",
-  "Same-day service for emergencies",
+  "Prompt scheduling and reliable arrival windows",
   "Wide selection of quality parts and doors",
 ]
 

@@ -61,10 +61,10 @@ export function ContactForm() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance">
-            Get a Free Quote
+            Request Service
           </h2>
           <p className="mt-4 text-lg text-muted-foreground text-pretty">
-            Fill out the form below and we'll get back to you within 24 hours with
+            Fill out the form below and we'll get back to you with
             a detailed estimate for your project.
           </p>
         </div>
@@ -80,7 +80,7 @@ export function ContactForm() {
                   <h3 className="font-semibold text-foreground">Phone</h3>
                   <p className="text-muted-foreground">{COMPANY.phone}</p>
                   <p className="text-sm text-muted-foreground">
-                    Mon-Fri 7am-7pm, Sat 8am-5pm
+                    Mon–Fri 7am–5pm
                   </p>
                 </div>
               </div>
@@ -118,11 +118,8 @@ export function ContactForm() {
                   <Clock className="h-5 w-5 text-accent" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground">Emergency Service</h3>
-                  <p className="text-muted-foreground">24/7 Available</p>
-                  <p className="text-sm text-muted-foreground">
-                    For urgent garage door issues
-                  </p>
+                  <h3 className="font-semibold text-foreground">Hours</h3>
+                  <p className="text-muted-foreground">Mon–Fri 7am–5pm</p>
                 </div>
               </div>
             </div>
@@ -138,8 +135,7 @@ export function ContactForm() {
                   Thank You!
                 </h3>
                 <p className="text-muted-foreground">
-                  We've received your request and will contact you within 24 hours
-                  with a free quote.
+                  We've received your request and will be in touch shortly with an estimate.
                 </p>
                 <Button
                   className="mt-6"
@@ -244,8 +240,8 @@ export function ContactForm() {
                       </SelectItem>
                       <SelectItem value="opener">Opener Services</SelectItem>
                       <SelectItem value="spring">Spring Replacement</SelectItem>
-                      <SelectItem value="emergency">Emergency Repair</SelectItem>
-                      <SelectItem value="maintenance">Maintenance</SelectItem>
+
+
                       <SelectItem value="noise">Garage Door Making Weird Sound</SelectItem>
                       <SelectItem value="unknown">I Don&apos;t Know, Please Send Help</SelectItem>
                       <SelectItem value="other">Other</SelectItem>
@@ -293,7 +289,7 @@ export function ContactForm() {
                   size="lg"
                   disabled={isSubmitting || !service}
                 >
-                  {isSubmitting ? "Submitting..." : "Get Free Quote"}
+                  {isSubmitting ? "Submitting..." : "Request Service"}
                 </Button>
 
                 <p className="text-xs text-center text-muted-foreground">

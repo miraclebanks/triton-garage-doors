@@ -1,11 +1,11 @@
-import { Settings, DoorOpen, Gauge, Cog, AlertTriangle, Zap } from "lucide-react"
+import { Settings, DoorOpen, Gauge, Cog, AlertTriangle } from "lucide-react"
 
 const services = [
   {
     icon: Settings,
     title: "Garage Door Repair",
     description:
-      "Fast, reliable repairs for springs, cables, rollers, panels, and tracks. Most repairs completed same day.",
+      "Fast, reliable repairs for springs, cables, rollers, panels, and tracks. Most repairs completed in a single visit.",
   },
   {
     icon: DoorOpen,
@@ -27,15 +27,9 @@ const services = [
   },
   {
     icon: AlertTriangle,
-    title: "Emergency Repairs",
+    title: "Panel & Track Repair",
     description:
-      "Stuck door at midnight? We offer 24/7 emergency dispatch across Orange County — no extra weekend fee.",
-  },
-  {
-    icon: Zap,
-    title: "Maintenance Plans",
-    description:
-      "Scheduled tune-ups that catch problems early, lubricate moving parts, and extend door lifespan by years.",
+      "Dented panels, bent tracks, or misaligned doors? We restore your door to proper operation and appearance.",
   },
 ]
 
@@ -63,7 +57,11 @@ export function Services() {
           {services.map((service, i) => (
             <div
               key={service.title}
-              className="group flex gap-5 p-7 bg-background hover:bg-secondary/40 transition-colors"
+              className={`group flex gap-5 p-7 bg-background hover:bg-secondary/40 transition-colors ${
+                services.length % 2 !== 0 && i === services.length - 1
+                  ? "md:col-span-2"
+                  : ""
+              }`}
             >
               <div className="shrink-0 flex flex-col items-center gap-3">
                 <span className="text-xs font-bold text-accent/50 tabular-nums">

@@ -1,22 +1,42 @@
 "use client"
 
 import Link from "next/link"
-import { Phone, Menu, X } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { useState } from "react"
-import { COMPANY } from "@/lib/config"
+import { useState, useEffect } from "react"
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10)
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
 
   return (
-    <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-sm border-b border-border">
+    <header
+      className={`sticky top-0 z-50 border-b border-border transition-all duration-300 ${
+        scrolled
+          ? "bg-card/80 backdrop-blur-md shadow-sm py-0"
+          : "bg-card py-0"
+      }`}
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+        <div
+          className={`flex items-center justify-between transition-all duration-300 ${
+            scrolled ? "h-12" : "h-16"
+          }`}
+        >
           <div className="flex items-center gap-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
+            <div
+              className={`flex items-center justify-center rounded-lg bg-primary transition-all duration-300 ${
+                scrolled ? "h-7 w-7" : "h-10 w-10"
+              }`}
+            >
               <svg
-                className="h-6 w-6 text-primary-foreground"
+                className={`text-primary-foreground transition-all duration-300 ${scrolled ? "h-4 w-4" : "h-6 w-6"}`}
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -29,10 +49,16 @@ export function Header() {
                 />
               </svg>
             </div>
-            <span className="text-xl font-bold text-foreground">Triton Garage Doors</span>
+            <span
+              className={`font-bold text-foreground transition-all duration-300 ${
+                scrolled ? "text-base" : "text-xl"
+              }`}
+            >
+              Triton Garage Doors
+            </span>
           </div>
 
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className={`items-center gap-8 ${scrolled ? "hidden" : "hidden md:flex"}`}>
             <Link
               href="#services"
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
@@ -59,21 +85,14 @@ export function Header() {
             </Link>
           </nav>
 
-          <div className="hidden md:flex items-center gap-4">
-            <a
-              href={`tel:${COMPANY.phoneTel}`}
-              className="flex items-center gap-2 text-sm font-medium text-foreground"
-            >
-              <Phone className="h-4 w-4" />
-              {COMPANY.phone}
-            </a>
+          <div className={scrolled ? "hidden" : "hidden md:flex items-center"}>
             <Button asChild>
-              <Link href="#contact">Get Free Quote</Link>
+              <Link href="#contact">Book Service</Link>
             </Button>
           </div>
 
           <button
-            className="md:hidden p-2"
+            className={`p-2 ${scrolled ? "block" : "md:hidden"}`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -116,16 +135,9 @@ export function Header() {
               >
                 Contact
               </Link>
-              <a
-                href={`tel:${COMPANY.phoneTel}`}
-                className="flex items-center gap-2 text-sm font-medium text-foreground"
-              >
-                <Phone className="h-4 w-4" />
-                {COMPANY.phone}
-              </a>
               <Button asChild className="w-fit">
                 <Link href="#contact" onClick={() => setMobileMenuOpen(false)}>
-                  Get Free Quote
+                  Book Service
                 </Link>
               </Button>
             </nav>

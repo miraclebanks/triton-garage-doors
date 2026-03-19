@@ -7,7 +7,7 @@ const stats = [
   { value: "8+", label: "Years Serving OC" },
   { value: "5,000+", label: "Jobs Completed" },
   { value: "4.9★", label: "Average Rating" },
-  { value: "24/7", label: "Emergency Line" },
+  { value: "OC", label: "Local & Family Owned" },
 ]
 
 export function Hero() {
@@ -26,7 +26,7 @@ export function Hero() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
               </span>
-              Same-Day Service Available
+              Serving Orange County
             </div>
 
             <h1 className="text-5xl font-extrabold tracking-tight text-foreground sm:text-6xl leading-[1.05] text-balance">
@@ -45,7 +45,7 @@ export function Hero() {
             <div className="mt-8 flex flex-col sm:flex-row items-start gap-3">
               <Button size="lg" asChild className="w-full sm:w-auto">
                 <Link href="#contact">
-                  Get Free Quote
+                  Request Service
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
@@ -84,7 +84,7 @@ export function Hero() {
 
               <div className="mt-8 pt-6 border-t border-primary-foreground/10 space-y-3 text-sm text-primary-foreground/80">
                 {[
-                  "Licensed & fully insured technicians",
+                  "Certified, experienced technicians",
                   "No hidden fees — upfront pricing always",
                   "All major brands serviced",
                   "Parts & labor guaranteed",

@@ -2,17 +2,27 @@
 
 import { Phone } from "lucide-react"
 import { COMPANY } from "@/lib/config"
+import { useState, useEffect } from "react"
 
 export function CallBanner() {
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10)
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
+
   return (
-    <div className="sticky top-16 z-40 bg-accent text-accent-foreground shadow-md">
+    <div
+      className={`sticky z-40 bg-accent text-accent-foreground shadow-md transition-all duration-300 ${
+        scrolled ? "top-12" : "top-16"
+      }`}
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between py-2 gap-4">
-          <span className="hidden sm:block text-sm font-medium opacity-90">
-            Serving Orange County — 24/7 Emergency Service Available
-          </span>
-          <span className="sm:hidden text-sm font-medium opacity-90">
-            24/7 Emergency Service
+          <span className="text-xl font-extrabold tracking-wide">
+            Call Now
           </span>
           <a
             href={`tel:${COMPANY.phoneTel}`}
