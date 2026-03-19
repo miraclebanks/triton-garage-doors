@@ -10,7 +10,7 @@ const stats = [
 
 export function Hero() {
   return (
-    <section className="relative bg-primary text-primary-foreground overflow-hidden border-b border-primary-foreground/10">
+    <section className="relative bg-primary text-primary-foreground overflow-hidden">
 
       {/* Background texture lines */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{
@@ -85,6 +85,8 @@ export function Hero() {
         </div>
       </div>
 
+      {/* Diagonal bottom edge */}
+      <div className="h-12 bg-background" style={{ clipPath: "polygon(0 100%, 100% 0, 100% 100%)" }} />
     </section>
   )
 }
