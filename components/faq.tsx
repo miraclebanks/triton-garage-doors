@@ -91,7 +91,7 @@ export function FAQ() {
               </button>
 
               {open === i && (
-                <div className="pl-10 pb-6 text-sm text-primary-foreground/60 leading-relaxed max-w-2xl">
+                <div className="pl-10 pb-6 text-sm font-semibold text-primary-foreground/70 leading-relaxed">
                   {faq.answer}
                 </div>
               )}
