@@ -28,7 +28,7 @@ export function Header() {
               </svg>
             </div>
             <span className={`font-extrabold tracking-tight transition-all duration-300 ${scrolled ? "text-base" : "text-lg"}`}>
-              Triton <span className="text-[oklch(0.82_0.10_230)]">Garage Doors</span>
+              Triton <span className="text-[oklch(0.88_0.08_240)]">Garage Doors</span>
             </span>
           </Link>
 

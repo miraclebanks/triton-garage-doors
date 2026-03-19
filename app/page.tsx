@@ -7,6 +7,7 @@ import { About } from "@/components/about"
 import { Testimonials } from "@/components/testimonials"
 import { FAQ } from "@/components/faq"
 import { ContactForm } from "@/components/contact-form"
+import { Payment } from "@/components/payment"
 import { Footer } from "@/components/footer"
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
         <Testimonials />
         <FAQ />
         <ContactForm />
+        <Payment />
       </main>
       <Footer />
       <MobileCallBar />
