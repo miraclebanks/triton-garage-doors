@@ -20,11 +20,36 @@ const contactDetails = [
   { icon: Clock, label: "Hours", value: "Mon–Fri 7am–5pm", href: null, sub: null },
 ]
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
+const PHONE_RE = /^\+?1?\s*[-.]?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/
+
+async function checkAddressExists(address: string): Promise<boolean> {
+  try {
+    const res = await fetch(
+      `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&limit=1&countrycodes=us`,
+      { headers: { "User-Agent": "TritonGarageDoorsContactForm/1.0" } }
+    )
+    const results = await res.json()
+    return Array.isArray(results) && results.length > 0
+  } catch {
+    // If the API fails, don't block submission
+    return true
+  }
+}
+
 export function ContactForm() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [service, setService] = useState("")
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({})
+
+  function setFieldError(field: string, msg: string) {
+    setFieldErrors((prev) => ({ ...prev, [field]: msg }))
+  }
+  function clearFieldError(field: string) {
+    setFieldErrors((prev) => { const n = { ...prev }; delete n[field]; return n })
+  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -32,27 +57,51 @@ export function ContactForm() {
     setError(null)
 
     const form = e.currentTarget
-    const data = {
-      firstName: (form.elements.namedItem("firstName") as HTMLInputElement).value,
-      lastName: (form.elements.namedItem("lastName") as HTMLInputElement).value,
-      email: (form.elements.namedItem("email") as HTMLInputElement).value,
-      phone: (form.elements.namedItem("phone") as HTMLInputElement).value,
+    const fields = {
+      firstName: (form.elements.namedItem("firstName") as HTMLInputElement).value.trim(),
+      lastName: (form.elements.namedItem("lastName") as HTMLInputElement).value.trim(),
+      email: (form.elements.namedItem("email") as HTMLInputElement).value.trim(),
+      phone: (form.elements.namedItem("phone") as HTMLInputElement).value.trim(),
       service,
-      address: (form.elements.namedItem("address") as HTMLInputElement).value,
-      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
+      address: (form.elements.namedItem("address") as HTMLInputElement).value.trim(),
+      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value.trim(),
+    }
+
+    // Client-side validation
+    const errors: Record<string, string> = {}
+
+    if (!EMAIL_RE.test(fields.email))
+      errors.email = "Please enter a valid email address."
+
+    if (!PHONE_RE.test(fields.phone))
+      errors.phone = "Please enter a valid US phone number."
+
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors)
+      setIsSubmitting(false)
+      return
+    }
+
+    // Address validation via OpenStreetMap
+    const addressValid = await checkAddressExists(fields.address)
+    if (!addressValid) {
+      setFieldErrors({ address: "We couldn't verify this address. Please check it and try again." })
+      setIsSubmitting(false)
+      return
     }
 
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify(fields),
       })
       if (!res.ok) {
         const json = await res.json()
         throw new Error(json.message ?? "Submission failed. Please try again.")
       }
       setIsSubmitted(true)
+      setFieldErrors({})
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.")
     } finally {
@@ -133,11 +182,21 @@ export function ContactForm() {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <Field label="Email" htmlFor="email">
-                  <Input id="email" name="email" type="email" placeholder="john@example.com" required />
+                <Field label="Email" htmlFor="email" error={fieldErrors.email}>
+                  <Input
+                    id="email" name="email" type="email"
+                    placeholder="john@example.com" required
+                    onChange={() => clearFieldError("email")}
+                    className={fieldErrors.email ? "border-destructive" : ""}
+                  />
                 </Field>
-                <Field label="Phone" htmlFor="phone">
-                  <Input id="phone" name="phone" type="tel" placeholder="(555) 000-0000" required />
+                <Field label="Phone" htmlFor="phone" error={fieldErrors.phone}>
+                  <Input
+                    id="phone" name="phone" type="tel"
+                    placeholder="(555) 000-0000" required
+                    onChange={() => clearFieldError("phone")}
+                    className={fieldErrors.phone ? "border-destructive" : ""}
+                  />
                 </Field>
               </div>
 
@@ -158,22 +217,27 @@ export function ContactForm() {
                 </Select>
               </Field>
 
-              <Field label="Service Address" htmlFor="address">
-                <Input id="address" name="address" placeholder="123 Main St, City, State" required />
+              <Field label="Service Address" htmlFor="address" error={fieldErrors.address}>
+                <Input
+                  id="address" name="address"
+                  placeholder="123 Main St, City, State" required
+                  onChange={() => clearFieldError("address")}
+                  className={fieldErrors.address ? "border-destructive" : ""}
+                />
               </Field>
 
               <Field label="Describe Your Issue" htmlFor="message">
                 <Textarea id="message" name="message" placeholder="Tell us what's going on with your garage door..." rows={4} />
               </Field>
 
-              {error && <p className="text-sm text-destructive">{error}</p>}
+              {error && <p className="text-sm text-destructive font-bold">{error}</p>}
 
               <button
                 type="submit"
                 disabled={isSubmitting || !service}
                 className="w-full flex items-center justify-center gap-2 bg-primary text-primary-foreground font-bold uppercase tracking-widest text-sm px-8 py-4 hover:bg-accent hover:text-accent-foreground transition-colors disabled:opacity-40"
               >
-                {isSubmitting ? "Submitting..." : "Request Service"}
+                {isSubmitting ? "Verifying & Submitting..." : "Request Service"}
                 <ArrowRight className="h-4 w-4" />
               </button>
 
@@ -188,13 +252,14 @@ export function ContactForm() {
   )
 }
 
-function Field({ label, htmlFor, children }: { label: string; htmlFor: string; children: React.ReactNode }) {
+function Field({ label, htmlFor, error, children }: { label: string; htmlFor: string; error?: string; children: React.ReactNode }) {
   return (
     <div className="space-y-1.5">
       <label htmlFor={htmlFor} className="text-xs font-bold uppercase tracking-widest text-foreground">
         {label}
       </label>
       {children}
+      {error && <p className="text-xs text-destructive font-bold">{error}</p>}
     </div>
   )
 }

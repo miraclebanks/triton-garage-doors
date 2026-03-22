@@ -6,10 +6,10 @@ import { COMPANY } from "@/lib/config"
 const contactSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
   lastName: z.string().min(1, "Last name is required"),
-  email: z.string().email("Invalid email address"),
-  phone: z.string().min(7, "Phone number is required"),
+  email: z.string().email("Invalid email address").regex(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/, "Invalid email format"),
+  phone: z.string().regex(/^\+?1?\s*[-.]?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/, "Invalid US phone number"),
   service: z.string().min(1, "Please select a service"),
-  address: z.string().min(1, "Service address is required"),
+  address: z.string().min(5, "Please enter a valid address"),
   message: z.string().optional(),
 })
 
