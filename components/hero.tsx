@@ -4,7 +4,7 @@ import { COMPANY } from "@/lib/config"
 const stats = [
   { value: "8+", label: "Years in OC" },
   { value: "5,000+", label: "Jobs Completed" },
-  { value: "4.9★", label: "Star Rating" },
+  { value: "5★", label: "Star Rating" },
   { value: "OC", label: "Family Owned" },
 ]
 
@@ -42,8 +42,7 @@ export function Hero() {
         {/* Subtext + CTAs side by side on desktop */}
         <div className="flex flex-col lg:flex-row lg:items-end gap-8 lg:gap-16">
           <p className="text-xl lg:text-2xl font-bold text-primary-foreground/60 max-w-md leading-relaxed">
-            Repair, installation, and opener services across Orange County.
-            Certified techs, upfront pricing, satisfaction guaranteed.
+            Repair, installation, and garage door motor services across Orange County.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 lg:mb-0.5">
@@ -65,14 +64,14 @@ export function Hero() {
         </div>
 
         {/* Star rating */}
-        <div className="mt-6 flex items-center gap-2 text-sm text-[oklch(0.65_0.18_70)]">
+        {/* <div className="mt-6 flex items-center gap-2 text-sm text-[oklch(0.65_0.18_70)]">
           <div className="flex">
             {[...Array(5)].map((_, i) => (
               <Star key={i} className="h-3.5 w-3.5 fill-accent text-accent" />
             ))}
           </div>
-          <span>Rated 4.9/5 · 500+ reviews</span>
-        </div>
+          <span>Rated 5/5</span>
+        </div> */}
 
         {/* Stats bar */}
         <div className="mt-16 pt-8 border-t border-primary-foreground/10 grid grid-cols-2 sm:grid-cols-4 gap-8">

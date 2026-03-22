@@ -26,7 +26,7 @@ const services = [
     icon: Cog,
     title: "Spring Replacement",
     description:
-      "Expert torsion and extension spring replacement using high-cycle, durable parts backed by a lifetime warranty.",
+      "Expert torsion and extension spring replacement using high-cycle, durable parts.",
   },
   {
     icon: AlertTriangle,
@@ -70,9 +70,6 @@ export function Services() {
                   className="sm:hidden w-full flex items-center gap-4 py-5 text-left"
                   onClick={() => setOpenIndex(isOpen ? null : i)}
                 >
-                  <span className="text-xs font-bold text-accent/60 tabular-nums w-5 shrink-0">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
                   <div className="shrink-0 h-8 w-8 rounded bg-primary flex items-center justify-center">
                     <service.icon className="h-4 w-4 text-primary-foreground" />
                   </div>
@@ -86,18 +83,13 @@ export function Services() {
 
                 {/* Mobile: collapsible description */}
                 {isOpen && (
-                  <p className="sm:hidden text-muted-foreground leading-relaxed text-lg font-bold pb-5 pl-[4.5rem]">
+                  <p className="sm:hidden text-muted-foreground leading-relaxed text-lg font-bold pb-5">
                     {service.description}
                   </p>
                 )}
 
-                {/* Desktop: always-visible 3-col row */}
-                <div className="hidden sm:grid sm:grid-cols-[6rem_1fr_1fr] sm:gap-12 py-8">
-                  <div className="flex items-start pt-1">
-                    <span className="text-sm font-bold text-accent/60 tabular-nums tracking-widest">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                  </div>
+                {/* Desktop: always-visible 2-col row */}
+                <div className="hidden sm:grid sm:grid-cols-[1fr_2fr] sm:gap-12 py-8">
                   <div className="flex items-start gap-4">
                     <div className="shrink-0 h-10 w-10 rounded bg-primary flex items-center justify-center group-hover:bg-accent/90 transition-colors mt-0.5">
                       <service.icon className="h-5 w-5 text-primary-foreground" />

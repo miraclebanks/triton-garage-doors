@@ -2,9 +2,7 @@ import { CheckCircle2 } from "lucide-react"
 
 const features = [
   "Over 8 years of industry experience",
-  "Certified, experienced technicians",
-  "Transparent pricing with no hidden fees",
-  "Satisfaction guarantee on all work",
+  "Experienced technicians",
   "Prompt scheduling and reliable arrival windows",
   "Wide selection of quality parts and doors",
 ]
@@ -12,12 +10,12 @@ const features = [
 const stats = [
   { value: "8+", label: "Years in OC" },
   { value: "5,000+", label: "Jobs Done" },
-  { value: "98%", label: "Satisfaction" },
+  { value: "100%", label: "Satisfaction" },
 ]
 
 export function About() {
   return (
-    <section id="about" className="py-16 lg:py-20 bg-background">
+    <section id="about" className="lg:py-20 bg-background">
       <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
 
         {/* Stat bar */}
@@ -41,13 +39,13 @@ export function About() {
             </h2>
             <p className="mt-4 text-muted-foreground text-lg font-bold leading-relaxed">
               For over 8 years, Triton Garage Doors has been the go-to choice for garage
-              door services across Orange County. Our certified technicians show up on time,
+              door services across Orange County. Our experienced technicians show up on time,
               give you a straight price before starting, and don't leave until the job is
               done right.
             </p>
             <p className="mt-4 text-muted-foreground text-lg font-bold leading-relaxed">
               We only use premium, manufacturer-approved parts and stand behind every
-              repair with a full satisfaction guarantee. No pressure. No runaround.
+              repair. No pressure. No runaround.
             </p>
           </div>
 

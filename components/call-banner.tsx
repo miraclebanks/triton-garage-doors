@@ -27,7 +27,7 @@ export function CallBanner() {
           <div className="hidden lg:flex items-center gap-6 text-sm font-medium text-secondary-foreground/70">
             <span className="flex items-center gap-1.5">
               <Star className="h-4 w-4 fill-accent text-accent" />
-              4.9 Rating · 500+ Reviews
+              5.0 Rating 
             </span>
             <span className="h-4 w-px bg-border" />
             <span className="flex items-center gap-1.5">

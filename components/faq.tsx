@@ -75,9 +75,6 @@ export function FAQ() {
                 onClick={() => setOpen(open === i ? null : i)}
               >
                 <div className="flex items-start gap-5">
-                  <span className="text-xs font-bold text-accent/50 tabular-nums tracking-widest shrink-0 mt-1">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
                   <span className="text-base font-bold uppercase tracking-tight text-primary-foreground group-hover:text-accent transition-colors">
                     {faq.question}
                   </span>
@@ -91,7 +88,7 @@ export function FAQ() {
               </button>
 
               {open === i && (
-                <div className="pl-10 pb-6 text-xl font-semibold text-primary-foreground/70 leading-relaxed">
+                <div className="pb-6 text-xl font-semibold text-primary-foreground/70 leading-relaxed">
                   {faq.answer}
                 </div>
               )}
