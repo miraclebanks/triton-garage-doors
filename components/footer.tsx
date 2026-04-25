@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { COMPANY } from "@/lib/config"
 
-const links = ["Services", "About", "Reviews", "FAQ", "Contact"]
+const links = ["Services", "About", /* "Reviews", */ "FAQ", "Contact"]
 
 export function Footer() {
   return (
