@@ -29,12 +29,12 @@ export function Footer() {
           </div>
 
           {/* CTA */}
-          <Link
+          <a
             href="#contact"
             className="inline-flex items-center gap-2 bg-accent text-accent-foreground font-bold uppercase tracking-widest text-sm px-6 py-3 hover:bg-accent/90 transition-colors rounded self-end"
           >
             Book Service
-          </Link>
+          </a>
         </div>
 
         {/* Bottom row */}

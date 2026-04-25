@@ -53,12 +53,12 @@ export function Header() {
             >
               Call Now
             </a>
-            <Link
+            <a
               href="#contact"
               className="bg-accent text-accent-foreground text-[1.05rem] font-bold px-4 py-2 rounded hover:bg-accent/90 transition-colors"
             >
               Book Service
-            </Link>
+            </a>
           </div>
 
           {/* Hamburger */}
@@ -85,13 +85,13 @@ export function Header() {
                   {item}
                 </Link>
               ))}
-              <Link
+              <a
                 href="#contact"
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-fit bg-accent text-accent-foreground text-sm font-bold px-4 py-2 rounded hover:bg-accent/90 transition-colors"
               >
                 Book Service
-              </Link>
+              </a>
             </nav>
           </div>
         )}
