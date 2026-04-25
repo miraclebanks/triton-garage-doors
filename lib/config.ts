@@ -3,5 +3,5 @@ export const COMPANY = {
   phone: "949-463-0500",
   phoneTel: "+19494630500",
   email: "tritongaragedoors@gmail.com",       // displayed publicly on the site
-  notificationEmail: "tritongaragedoors@gmail.com", // where form submissions are sent
+  notificationEmail: "andrew@tritongaragedoors.com", // where form submissions are sent
 }
