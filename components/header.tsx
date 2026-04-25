@@ -34,7 +34,7 @@ export function Header() {
 
           {/* Desktop nav */}
           <nav className={`items-center gap-8 ${scrolled ? "hidden" : "hidden md:flex"}`}>
-            {["Services", "About", "Reviews", "Contact"].map((item) => (
+            {["Services", "About", /* "Reviews", */ "Contact"].map((item) => (
               <Link
                 key={item}
                 href={`#${item.toLowerCase()}`}
@@ -75,7 +75,7 @@ export function Header() {
         {mobileMenuOpen && (
           <div className="py-4 border-t border-primary-foreground/10">
             <nav className="flex flex-col gap-4">
-              {["Services", "About", "Reviews", "Contact"].map((item) => (
+              {["Services", "About", /* "Reviews", */ "Contact"].map((item) => (
                 <Link
                   key={item}
                   href={`#${item.toLowerCase()}`}
