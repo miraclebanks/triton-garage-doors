@@ -35,7 +35,7 @@ export function Payment() {
               We Accept
             </h2>
             <p className="mt-3 text-lg font-bold text-muted-foreground max-w-sm">
-              Pay the way that works best for you. No hidden fees, no surprises.
+              Pay the way that works best for you.
             </p>
           </div>
 

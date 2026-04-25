@@ -4,7 +4,6 @@ const features = [
   "Over 8 years of industry experience",
   "Experienced technicians",
   "Prompt scheduling and reliable arrival windows",
-  "Wide selection of quality parts and doors",
 ]
 
 const stats = [
@@ -38,14 +37,7 @@ export function About() {
               Why Choose Triton
             </h2>
             <p className="mt-4 text-muted-foreground text-lg font-bold leading-relaxed">
-              For over 8 years, Triton Garage Doors has been the go-to choice for garage
-              door services across Orange County. Our experienced technicians show up on time,
-              give you a straight price before starting, and don't leave until the job is
-              done right.
-            </p>
-            <p className="mt-4 text-muted-foreground text-lg font-bold leading-relaxed">
-              We only use premium, manufacturer-approved parts and stand behind every
-              repair. No pressure. No runaround.
+              For over 8 years, Triton Garage Doors has serviced garage doors across Orange County. Our technicians will usually be able to deduce the problem and give an estimate over the phone or will schedule a free estimate to come out to see what is going on. All of our pricing is up front and we will tell you anything that needs to be done and the cost before starting.
             </p>
           </div>
 

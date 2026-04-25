@@ -5,6 +5,11 @@ import { Plus, Minus } from "lucide-react"
 
 const faqs = [
   {
+    question: "What do I need to prepare for a garage door repair or installation?",
+    answer:
+      "We always request that any items, (furniture, cars, workout equipment, bikes, storage, etc.) be moved completely out or away from the door if possible. Most repairs require our technicians to have access to the entirety of the door and tracks. In most cases like a broken spring you may be unable to do this, if this is the case please let us know so that we can anticipate and plan accordingly when coming to the job.",
+  },
+  {
     question: "How quickly can you respond to a service call?",
     answer:
       "For most repairs we can schedule an appointment within 1–2 business days. We'll always give you an estimated arrival window so you're not left waiting.",
@@ -12,27 +17,22 @@ const faqs = [
   {
     question: "How much does a garage door repair typically cost?",
     answer:
-      "Costs vary depending on the type of repair needed. Minor fixes like sensor alignment or remote reprogramming can start around $75–$100, while spring replacements typically run $150–$350. Full door installations range widely based on the door style and material. We always provide a no-obligation estimate before any work begins.",
+      "Costs will vary depending on the type of repair needed, but will be discussed either in person or over the phone prior to the start of the job. We usually have an idea or know exactly the cost based on the conversation or information provided prior. Anything once we are on-site will be discussed on a case by case basis and nothing will ever be added on without the approval of the homeowner first.",
   },
   {
     question: "How long does a spring replacement take?",
     answer:
-      "Most spring replacements take 1–2 hours. Torsion springs (above the door) are slightly more involved than extension springs (along the sides), but our technicians carry a wide inventory of springs so we can complete the job in a single visit in most cases.",
+      "Most spring replacements take 1–2 hours. Torsion springs (above the door) are slightly more involved than extension springs (along the sides), but our technicians will be able to assess what spring size is needed either over the phone or from a single picture so we can complete the job in a single visit in most cases.",
   },
   {
     question: "Do you offer a warranty on your work?",
     answer:
-      "Yes. All labor comes with a 90-day workmanship warranty. Parts are covered by the manufacturer's warranty, which typically ranges from 1 year to lifetime depending on the component. We'll explain the specific warranty for your repair before we start.",
+      "Most new installs of hinges, springs, cables, rollers, etc. come with a 3-year warranty from us and for motors we provide a 3-year warranty as well as whatever warranty is provided by the manufacturer. New garage doors come with a 5-year warranty. Most repairs do not come with a warranty, but in specific cases they can.",
   },
   {
     question: "Can you repair any brand of garage door opener?",
     answer:
-      "We service all major brands including LiftMaster, Chamberlain, Genie, Craftsman, Ryobi, and more. Whether you need a repair, battery replacement, remote reprogramming, or a full upgrade to a Wi-Fi–enabled smart opener, we've got you covered.",
-  },
-  {
-    question: "Is it safe to use my garage door if a spring is broken?",
-    answer:
-      "No. Operating a garage door with a broken spring is dangerous and can cause further damage to the opener, cables, and door panels. If you suspect a broken spring, stop using the door immediately and give us a call.",
+      "While we service all major brands of garage door openers, if the unit is too old we may not be able to get the parts required to repair it. It is specific to the issue the motor is having, if it is a belt or chain those can usually be replaced. However, if it is a motherboard or an internal component then we may not be able to find the associated part. If this is the case then the next step forward is to upgrade to a new unit.",
   },
   {
     question: "What areas do you serve?",
@@ -42,7 +42,7 @@ const faqs = [
   {
     question: "Do I need to be home during the service?",
     answer:
-      "For most repairs, yes. We'll need access to the garage and may have questions for you along the way. Just let us know your situation when you book.",
+      "For most repairs, yes. We'll need access to the garage and may have questions for you along the way. Just let us know your situation when you book and we will be able to accommodate you.",
   },
 ]
 

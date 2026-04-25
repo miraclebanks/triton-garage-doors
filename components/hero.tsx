@@ -42,7 +42,7 @@ export function Hero() {
         {/* Subtext + CTAs side by side on desktop */}
         <div className="flex flex-col lg:flex-row lg:items-end gap-8 lg:gap-16">
           <p className="text-xl lg:text-2xl font-bold text-primary-foreground/60 max-w-md leading-relaxed">
-            Repair, installation, and garage door motor services across Orange County.
+            Garage door and garage door motor installation, service and repair across Orange County.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 lg:mb-0.5">

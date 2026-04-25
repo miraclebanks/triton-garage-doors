@@ -23,6 +23,28 @@ const contactDetails = [
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 const PHONE_RE = /^\+?1?\s*[-.]?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/
 
+const TIME_OPTIONS = [
+  { value: "8am",  label: "8:00 AM" },
+  { value: "9am",  label: "9:00 AM" },
+  { value: "10am", label: "10:00 AM" },
+  { value: "11am", label: "11:00 AM" },
+  { value: "12pm", label: "12:00 PM" },
+  { value: "1pm",  label: "1:00 PM" },
+  { value: "2pm",  label: "2:00 PM" },
+  { value: "3pm",  label: "3:00 PM" },
+  { value: "4pm",  label: "4:00 PM" },
+  { value: "5pm",  label: "5:00 PM" },
+]
+
+function timeIndex(label: string) {
+  return TIME_OPTIONS.findIndex((t) => t.label === label)
+}
+
+function validToOptions(from: string) {
+  const idx = timeIndex(from)
+  return idx === -1 ? TIME_OPTIONS : TIME_OPTIONS.slice(idx + 1)
+}
+
 async function checkAddressExists(address: string): Promise<boolean> {
   try {
     const res = await fetch(
@@ -42,16 +64,39 @@ export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [service, setService] = useState("")
+  const [selectedDays, setSelectedDays] = useState<string[]>([])
+  const [sameTime, setSameTime] = useState(true)
+  const [sharedFrom, setSharedFrom] = useState("")
+  const [sharedTo, setSharedTo] = useState("")
+  const [dayTimes, setDayTimes] = useState<Record<string, { from: string; to: string }>>({})
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({})
 
-  function setFieldError(field: string, msg: string) {
-    setFieldErrors((prev) => ({ ...prev, [field]: msg }))
+  function validate(field: string, value: string): string {
+    switch (field) {
+      case "firstName": return value ? "" : "First name is required."
+      case "lastName":  return value ? "" : "Last name is required."
+      case "email":     return !value ? "Email is required." : !EMAIL_RE.test(value) ? "Please enter a valid email address." : ""
+      case "phone":     return !value ? "Phone number is required." : !PHONE_RE.test(value) ? "Please enter a valid US phone number." : ""
+      case "service":   return value ? "" : "Please select a service."
+      case "address":   return value.length >= 3 ? "" : "Address is required."
+      case "city":      return value ? "" : "City is required."
+      case "state":     return value.length >= 2 ? "" : "State is required."
+      case "zip":       return !value ? "ZIP code is required." : !/^\d{5}(-\d{4})?$/.test(value) ? "Please enter a valid ZIP code." : ""
+      case "message":   return value ? "" : "Please describe your issue."
+      default:          return ""
+    }
   }
+
+  function touchField(field: string, value: string) {
+    const msg = validate(field, value)
+    setFieldErrors((prev) => msg ? { ...prev, [field]: msg } : (() => { const n = { ...prev }; delete n[field]; return n })())
+  }
+
   function clearFieldError(field: string) {
     setFieldErrors((prev) => { const n = { ...prev }; delete n[field]; return n })
   }
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
     setError(null)
@@ -64,18 +109,28 @@ export function ContactForm() {
       phone: (form.elements.namedItem("phone") as HTMLInputElement).value.trim(),
       service,
       address: (form.elements.namedItem("address") as HTMLInputElement).value.trim(),
+      city: (form.elements.namedItem("city") as HTMLInputElement).value.trim(),
+      state: (form.elements.namedItem("state") as HTMLInputElement).value.trim(),
+      zip: (form.elements.namedItem("zip") as HTMLInputElement).value.trim(),
       message: (form.elements.namedItem("message") as HTMLTextAreaElement).value.trim(),
+      availability: selectedDays.length > 0
+        ? sameTime
+          ? `${selectedDays.join(", ")}${sharedFrom && sharedTo ? ` · ${sharedFrom}–${sharedTo}` : ""}`
+          : selectedDays
+              .map((d) => {
+                const t = dayTimes[d]
+                return t?.from && t?.to ? `${d}: ${t.from}–${t.to}` : d
+              })
+              .join(", ")
+        : "",
     }
 
-    // Client-side validation
+    // Validate all fields up front
     const errors: Record<string, string> = {}
-
-    if (!EMAIL_RE.test(fields.email))
-      errors.email = "Please enter a valid email address."
-
-    if (!PHONE_RE.test(fields.phone))
-      errors.phone = "Please enter a valid US phone number."
-
+    for (const key of ["firstName", "lastName", "email", "phone", "service", "address", "city", "state", "zip", "message"] as const) {
+      const msg = validate(key, fields[key])
+      if (msg) errors[key] = msg
+    }
     if (Object.keys(errors).length > 0) {
       setFieldErrors(errors)
       setIsSubmitting(false)
@@ -83,7 +138,8 @@ export function ContactForm() {
     }
 
     // Address validation via OpenStreetMap
-    const addressValid = await checkAddressExists(fields.address)
+    const fullAddress = `${fields.address}, ${fields.city}, ${fields.state} ${fields.zip}`
+    const addressValid = await checkAddressExists(fullAddress)
     if (!addressValid) {
       setFieldErrors({ address: "We couldn't verify this address. Please check it and try again." })
       setIsSubmitting(false)
@@ -163,7 +219,7 @@ export function ContactForm() {
                 We've received your request and will be in touch shortly with an estimate.
               </p>
               <button
-                onClick={() => { setIsSubmitted(false); setService("") }}
+                onClick={() => { setIsSubmitted(false); setService(""); setSelectedDays([]); setSameTime(true); setSharedFrom(""); setSharedTo(""); setDayTimes({}) }}
                 className="mt-2 text-xs font-bold uppercase tracking-widest text-accent hover:opacity-70 transition-opacity"
               >
                 Submit Another
@@ -172,12 +228,24 @@ export function ContactForm() {
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5">
 
+              <p className="text-xs text-muted-foreground">Fields marked <span className="text-destructive font-bold">*</span> are required.</p>
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <Field label="First Name" htmlFor="firstName">
-                  <Input id="firstName" name="firstName" placeholder="John" required />
+                <Field label="First Name" htmlFor="firstName" error={fieldErrors.firstName}>
+                  <Input
+                    id="firstName" name="firstName" placeholder="John" required
+                    onChange={() => clearFieldError("firstName")}
+                    onBlur={(e) => touchField("firstName", e.target.value.trim())}
+                    className={fieldErrors.firstName ? "border-destructive" : ""}
+                  />
                 </Field>
-                <Field label="Last Name" htmlFor="lastName">
-                  <Input id="lastName" name="lastName" placeholder="Doe" required />
+                <Field label="Last Name" htmlFor="lastName" error={fieldErrors.lastName}>
+                  <Input
+                    id="lastName" name="lastName" placeholder="Doe" required
+                    onChange={() => clearFieldError("lastName")}
+                    onBlur={(e) => touchField("lastName", e.target.value.trim())}
+                    className={fieldErrors.lastName ? "border-destructive" : ""}
+                  />
                 </Field>
               </div>
 
@@ -187,6 +255,7 @@ export function ContactForm() {
                     id="email" name="email" type="email"
                     placeholder="john@example.com" required
                     onChange={() => clearFieldError("email")}
+                    onBlur={(e) => touchField("email", e.target.value.trim())}
                     className={fieldErrors.email ? "border-destructive" : ""}
                   />
                 </Field>
@@ -195,14 +264,18 @@ export function ContactForm() {
                     id="phone" name="phone" type="tel"
                     placeholder="(555) 000-0000" required
                     onChange={() => clearFieldError("phone")}
+                    onBlur={(e) => touchField("phone", e.target.value.trim())}
                     className={fieldErrors.phone ? "border-destructive" : ""}
                   />
                 </Field>
               </div>
 
-              <Field label="Service Needed" htmlFor="service">
-                <Select name="service" required value={service} onValueChange={setService}>
-                  <SelectTrigger id="service">
+              <Field label="Service Needed" htmlFor="service" error={fieldErrors.service}>
+                <Select
+                  name="service" required value={service}
+                  onValueChange={(v) => { setService(v); touchField("service", v) }}
+                >
+                  <SelectTrigger id="service" className={fieldErrors.service ? "border-destructive" : ""}>
                     <SelectValue placeholder="Select a service" />
                   </SelectTrigger>
                   <SelectContent>
@@ -217,17 +290,182 @@ export function ContactForm() {
                 </Select>
               </Field>
 
-              <Field label="Service Address" htmlFor="address" error={fieldErrors.address}>
+              <Field label="Address Line 1" htmlFor="address" error={fieldErrors.address}>
                 <Input
                   id="address" name="address"
-                  placeholder="123 Main St, City, State" required
+                  placeholder="123 Main St" required
                   onChange={() => clearFieldError("address")}
+                  onBlur={(e) => touchField("address", e.target.value.trim())}
                   className={fieldErrors.address ? "border-destructive" : ""}
                 />
               </Field>
 
-              <Field label="Describe Your Issue" htmlFor="message">
-                <Textarea id="message" name="message" placeholder="Tell us what's going on with your garage door..." rows={4} />
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                <Field label="City" htmlFor="city" error={fieldErrors.city}>
+                  <Input
+                    id="city" name="city"
+                    placeholder="Irvine" required
+                    onChange={() => clearFieldError("city")}
+                    onBlur={(e) => touchField("city", e.target.value.trim())}
+                    className={fieldErrors.city ? "border-destructive" : ""}
+                  />
+                </Field>
+                <Field label="State" htmlFor="state" error={fieldErrors.state}>
+                  <Input
+                    id="state" name="state"
+                    placeholder="CA" required maxLength={2}
+                    onChange={() => clearFieldError("state")}
+                    onBlur={(e) => touchField("state", e.target.value.trim())}
+                    className={fieldErrors.state ? "border-destructive" : ""}
+                  />
+                </Field>
+                <Field label="ZIP Code" htmlFor="zip" error={fieldErrors.zip}>
+                  <Input
+                    id="zip" name="zip"
+                    placeholder="92602" required
+                    onChange={() => clearFieldError("zip")}
+                    onBlur={(e) => touchField("zip", e.target.value.trim())}
+                    className={`col-span-2 sm:col-span-1 ${fieldErrors.zip ? "border-destructive" : ""}`}
+                  />
+                </Field>
+              </div>
+
+              {/* Availability */}
+              <div className="border border-border rounded p-4 space-y-4 bg-card">
+                <p className="text-xs font-bold uppercase tracking-widest text-foreground">Availability</p>
+
+                {/* Day picker */}
+                <div>
+                  <p className="text-xs text-muted-foreground mb-2 font-bold">Select days that work for you</p>
+                  <div className="flex flex-wrap gap-2">
+                    {["Mon", "Tue", "Wed", "Thu", "Fri"].map((day) => {
+                      const active = selectedDays.includes(day)
+                      return (
+                        <button
+                          key={day}
+                          type="button"
+                          onClick={() =>
+                            setSelectedDays((prev) =>
+                              active ? prev.filter((d) => d !== day) : [...prev, day]
+                            )
+                          }
+                          className={`px-4 py-2 text-xs font-bold uppercase tracking-widest rounded border transition-colors ${
+                            active
+                              ? "bg-primary text-primary-foreground border-primary"
+                              : "bg-background text-foreground border-border hover:border-primary hover:text-primary"
+                          }`}
+                        >
+                          {day}
+                        </button>
+                      )
+                    })}
+                  </div>
+                </div>
+
+                {/* Same time checkbox — only show once at least one day is selected */}
+                {selectedDays.length > 0 && (
+                  <label className="flex items-center gap-2 cursor-pointer w-fit">
+                    <input
+                      type="checkbox"
+                      checked={sameTime}
+                      onChange={(e) => setSameTime(e.target.checked)}
+                      className="h-4 w-4 accent-primary"
+                    />
+                    <span className="text-xs font-bold text-foreground">Same time for all selected days</span>
+                  </label>
+                )}
+
+                {/* Shared time range */}
+                {selectedDays.length > 0 && sameTime && (
+                  <div>
+                    <p className="text-xs text-muted-foreground mb-2 font-bold">Preferred time window</p>
+                    <div className="flex items-center gap-3">
+                      <Select
+                        value={sharedFrom}
+                        onValueChange={(v) => {
+                          setSharedFrom(v)
+                          if (sharedTo && timeIndex(sharedTo) <= timeIndex(v)) setSharedTo("")
+                        }}
+                      >
+                        <SelectTrigger className="w-36">
+                          <SelectValue placeholder="From" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {TIME_OPTIONS.map((t) => (
+                            <SelectItem key={t.value} value={t.label}>{t.label}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <span className="text-xs font-bold text-muted-foreground">to</span>
+                      <Select value={sharedTo} onValueChange={setSharedTo}>
+                        <SelectTrigger className="w-36">
+                          <SelectValue placeholder="To" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {validToOptions(sharedFrom).map((t) => (
+                            <SelectItem key={t.value} value={t.label}>{t.label}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                )}
+
+                {/* Per-day time ranges */}
+                {selectedDays.length > 0 && !sameTime && (
+                  <div className="space-y-3">
+                    <p className="text-xs text-muted-foreground font-bold">Set a time window for each day</p>
+                    {selectedDays.map((day) => {
+                      const from = dayTimes[day]?.from ?? ""
+                      const to = dayTimes[day]?.to ?? ""
+                      const set = (key: "from" | "to", val: string) =>
+                        setDayTimes((prev) => ({ ...prev, [day]: { ...prev[day], [key]: val } }))
+                      return (
+                        <div key={day} className="flex items-center gap-3">
+                          <span className="text-xs font-extrabold uppercase tracking-widest text-foreground w-8 shrink-0">{day}</span>
+                          <Select
+                            value={from}
+                            onValueChange={(v) => {
+                              set("from", v)
+                              if (to && timeIndex(to) <= timeIndex(v))
+                                setDayTimes((prev) => ({ ...prev, [day]: { from: v, to: "" } }))
+                            }}
+                          >
+                            <SelectTrigger className="w-32">
+                              <SelectValue placeholder="From" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {TIME_OPTIONS.map((t) => (
+                                <SelectItem key={t.value} value={t.label}>{t.label}</SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          <span className="text-xs font-bold text-muted-foreground">to</span>
+                          <Select value={to} onValueChange={(v) => set("to", v)}>
+                            <SelectTrigger className="w-32">
+                              <SelectValue placeholder="To" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {validToOptions(from).map((t) => (
+                                <SelectItem key={t.value} value={t.label}>{t.label}</SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      )
+                    })}
+                  </div>
+                )}
+              </div>
+
+              <Field label="Describe Your Issue" htmlFor="message" error={fieldErrors.message}>
+                <Textarea
+                  id="message" name="message"
+                  placeholder="Tell us what's going on with your garage door..." rows={4} required
+                  onChange={() => clearFieldError("message")}
+                  onBlur={(e) => touchField("message", e.target.value.trim())}
+                  className={fieldErrors.message ? "border-destructive" : ""}
+                />
               </Field>
 
               {error && <p className="text-sm text-destructive font-bold">{error}</p>}
@@ -256,7 +494,7 @@ function Field({ label, htmlFor, error, children }: { label: string; htmlFor: st
   return (
     <div className="space-y-1.5">
       <label htmlFor={htmlFor} className="text-xs font-bold uppercase tracking-widest text-foreground">
-        {label}
+        {label}<span className="text-destructive ml-0.5">*</span>
       </label>
       {children}
       {error && <p className="text-xs text-destructive font-bold">{error}</p>}

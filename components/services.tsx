@@ -1,38 +1,32 @@
 "use client"
 
 import { useState } from "react"
-import { Settings, DoorOpen, Gauge, Cog, AlertTriangle, ChevronDown } from "lucide-react"
+import { Settings, DoorOpen, Gauge, Cog, ChevronDown } from "lucide-react"
 
 const services = [
   {
     icon: Settings,
     title: "Garage Door Repair",
     description:
-      "Fast, reliable repairs for springs, cables, rollers, panels, and tracks. Most repairs completed in a single visit.",
+      "We cover everything garage door-related including springs, cables, rollers, tracks and panels.",
+  },
+  {
+    icon: Gauge,
+    title: "Garage Door Service",
+    description:
+      "Lubrication, adjustments and tuning of the garage door to make sure everything is in working order.",
   },
   {
     icon: DoorOpen,
     title: "New Door Installation",
     description:
-      "Full installation of residential and commercial garage doors from top brands, measured and fitted to perfection.",
-  },
-  {
-    icon: Gauge,
-    title: "Opener Services",
-    description:
-      "Installation, repair, and smart-home integration of garage door openers from LiftMaster, Chamberlain, and more.",
+      "We order through most major brands of doors. We will also help you find exactly what you are looking for and provide a free estimate.",
   },
   {
     icon: Cog,
-    title: "Spring Replacement",
+    title: "Garage Motor Services",
     description:
-      "Expert torsion and extension spring replacement using high-cycle, durable parts.",
-  },
-  {
-    icon: AlertTriangle,
-    title: "Panel & Track Repair",
-    description:
-      "Dented panels, bent tracks, or misaligned doors? We restore your door to proper operation and appearance.",
+      "Installation of Chamberlain or Genie garage door motors with battery back-ups and the option of Wifi-enabled remote access on select units.",
   },
 ]
 
