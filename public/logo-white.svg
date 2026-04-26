@@ -37,7 +37,8 @@
 
   <!-- "TRITON" — white -->
   <text
-    x="96" y="48"
+    x="190" y="48"
+    text-anchor="middle"
     font-family="'Helvetica Neue', Arial, sans-serif"
     font-size="35"
     font-weight="800"
@@ -47,7 +48,8 @@
 
   <!-- "GARAGE DOORS" — light steel blue, matching the header accent -->
   <text
-    x="99" y="68"
+    x="190" y="68"
+    text-anchor="middle"
     font-family="'Helvetica Neue', Arial, sans-serif"
     font-size="12"
     font-weight="600"
