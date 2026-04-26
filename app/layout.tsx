@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   keywords: 'garage door repair Orange County, garage door installation Orange County, garage door service OC, garage door motor, spring replacement, Irvine, Anaheim, Huntington Beach',
   metadataBase: new URL('https://tritongaragedoors.com'),
   openGraph: {
-    title: 'Triton Garage Doors | Orange County CA',
+    title: 'Triton Garage Doors',
     description: 'Garage door repair, installation, and motor services across Orange County, CA. Over 8 years of experience. Free estimates.',
     url: 'https://tritongaragedoors.com',
     siteName: 'Triton Garage Doors',
