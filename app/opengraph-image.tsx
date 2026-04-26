@@ -34,7 +34,7 @@ export default function OgImage() {
         {/* Icon + text column */}
         <div style={{ display: "flex", alignItems: "flex-start", gap: 40 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={iconSrc} alt="" width={140} height={140} style={{ flexShrink: 0 }} />
+          <img src={iconSrc} alt="" width={140} height={140} style={{ flexShrink: 0, marginTop: 42 }} />
           <div style={{ display: "flex", flexDirection: "column", flexGrow: 1 }}>
             {/* Est tag — left aligned with TRITON */}
             <div style={{ color: "#f97316", fontSize: 22, fontWeight: 700, letterSpacing: "6px", marginBottom: 16, display: "flex" }}>
