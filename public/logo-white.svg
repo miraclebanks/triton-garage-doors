@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 80" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 248 80" fill="none">
 
   <!-- Full background so white text is visible on any surface -->
-  <rect width="300" height="80" rx="12" fill="#1B2848"/>
+  <rect width="248" height="80" rx="12" fill="#1B2848"/>
 
   <!-- ═══ ICON MARK (80×80) ═══ -->
 
@@ -37,7 +37,8 @@
 
   <!-- "TRITON" — white -->
   <text
-    x="96" y="43"
+    x="164" y="43"
+    text-anchor="middle"
     font-family="'Helvetica Neue', Arial, sans-serif"
     font-size="35"
     font-weight="800"
@@ -47,7 +48,8 @@
 
   <!-- "GARAGE DOORS" — light steel blue, matching the header accent -->
   <text
-    x="99" y="62"
+    x="164" y="62"
+    text-anchor="middle"
     font-family="'Helvetica Neue', Arial, sans-serif"
     font-size="12"
     font-weight="600"
