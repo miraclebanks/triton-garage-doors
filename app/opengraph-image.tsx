@@ -5,9 +5,14 @@ export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
 export default async function OgImage() {
-  const iconRes = await fetch("https://tritongaragedoors.com/logo-icon-white.png")
-  const iconData = await iconRes.arrayBuffer()
-  const iconSrc = `data:image/png;base64,${Buffer.from(iconData).toString("base64")}`
+  let iconSrc: string | null = null
+  try {
+    const iconRes = await fetch("https://tritongaragedoors.com/logo-icon-white.png")
+    if (iconRes.ok) {
+      const iconData = await iconRes.arrayBuffer()
+      iconSrc = `data:image/png;base64,${Buffer.from(iconData).toString("base64")}`
+    }
+  } catch { /* render without icon if fetch fails */ }
 
   return new ImageResponse(
     (
@@ -37,8 +42,10 @@ export default async function OgImage() {
 
         {/* Icon + text column */}
         <div style={{ display: "flex", alignItems: "center", gap: 40 }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={iconSrc} alt="" style={{ height: 140, width: "auto", flexShrink: 0 }} />
+          {iconSrc && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={iconSrc} alt="" style={{ height: 140, width: "auto", flexShrink: 0 }} />
+          )}
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ color: "#ffffff", fontSize: 148, fontWeight: 900, lineHeight: 0.9, letterSpacing: "-4px", display: "flex" }}>
               TRITON
