@@ -31,18 +31,15 @@ export default function OgImage() {
         {/* Orange top accent line */}
         <div style={{ position: "absolute", top: 0, left: 16, right: 0, height: 6, background: "#f97316", opacity: 0.3, display: "flex" }} />
 
-        {/* Est tag — centered */}
-        <div style={{ display: "flex", justifyContent: "center", marginBottom: 32 }}>
-          <div style={{ color: "#f97316", fontSize: 22, fontWeight: 700, letterSpacing: "6px", display: "flex" }}>
-            ORANGE COUNTY, CA · EST. 2016
-          </div>
-        </div>
-
         {/* Icon + text column */}
         <div style={{ display: "flex", alignItems: "flex-start", gap: 40 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={iconSrc} alt="" width={140} height={140} style={{ flexShrink: 0 }} />
           <div style={{ display: "flex", flexDirection: "column", flexGrow: 1 }}>
+            {/* Est tag — left aligned with TRITON */}
+            <div style={{ color: "#f97316", fontSize: 22, fontWeight: 700, letterSpacing: "6px", marginBottom: 16, display: "flex" }}>
+              ORANGE COUNTY, CA · EST. 2016
+            </div>
             <div style={{ color: "#ffffff", fontSize: 148, fontWeight: 900, lineHeight: 0.9, letterSpacing: "-4px", display: "flex" }}>
               TRITON
             </div>
