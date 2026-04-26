@@ -51,7 +51,7 @@ export default function OgImage() {
         </div>
 
         {/* Divider + tagline left-aligned to container */}
-        <div style={{ width: 80, height: 5, background: "#f97316", marginTop: 40, marginBottom: 40, display: "flex", borderRadius: 4 }} />
+        <div style={{ width: "100%", height: 5, background: "#f97316", marginTop: 40, marginBottom: 40, display: "flex", borderRadius: 4 }} />
         <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 30, fontWeight: 600, display: "flex" }}>
           Repair · Installation · Motor Services · 949-463-0500
         </div>
