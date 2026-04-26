@@ -21,15 +21,14 @@ export function Header() {
         <div className={`flex items-center justify-between transition-all duration-300 ${scrolled ? "h-12" : "h-16"}`}>
 
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3">
-            <div className={`flex items-center justify-center rounded bg-accent transition-all duration-300 ${scrolled ? "h-7 w-7" : "h-9 w-9"}`}>
-              <svg className={`text-accent-foreground transition-all duration-300 ${scrolled ? "h-4 w-4" : "h-5 w-5"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-              </svg>
-            </div>
-            <span className={`font-extrabold tracking-tight transition-all duration-300 ${scrolled ? "text-base" : "text-lg"}`}>
-              Triton <span className="text-[oklch(0.88_0.08_240)]">Garage Doors</span>
-            </span>
+          <Link href="/" className="flex items-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo-white.svg"
+              alt="Triton Garage Doors"
+              className={`transition-all duration-300 ${scrolled ? "h-8" : "h-10"}`}
+              style={{ width: "auto" }}
+            />
           </Link>
 
           {/* Desktop nav */}

@@ -13,15 +13,9 @@ export function Footer() {
 
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="h-9 w-9 flex items-center justify-center rounded bg-accent">
-                <svg className="h-5 w-5 text-accent-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                </svg>
-              </div>
-              <span className="text-xl font-extrabold tracking-tight">
-                Triton <span className="text-[oklch(0.88_0.08_240)]">Garage Doors</span>
-              </span>
+            <div className="mb-4">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo-white.svg" alt="Triton Garage Doors" className="h-10" style={{ width: "auto" }} />
             </div>
             <p className="text-primary-foreground/50 text-sm max-w-sm leading-relaxed">
               Garage door repair and installation across Orange County, CA. Trusted by homeowners for over 8 years.
