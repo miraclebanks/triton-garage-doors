@@ -1,18 +1,14 @@
 import { ImageResponse } from "next/og"
+import { readFileSync } from "fs"
+import { join } from "path"
 
 export const alt = "Triton Garage Doors | Orange County CA"
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
-export default async function OgImage() {
-  let iconSrc: string | null = null
-  try {
-    const iconRes = await fetch("https://tritongaragedoors.com/logo-icon-white.png")
-    if (iconRes.ok) {
-      const iconData = await iconRes.arrayBuffer()
-      iconSrc = `data:image/png;base64,${Buffer.from(iconData).toString("base64")}`
-    }
-  } catch { /* render without icon if fetch fails */ }
+export default function OgImage() {
+  const iconData = readFileSync(join(process.cwd(), "public/logo-icon-white.png"))
+  const iconSrc = `data:image/png;base64,${iconData.toString("base64")}`
 
   return new ImageResponse(
     (
@@ -42,10 +38,8 @@ export default async function OgImage() {
 
         {/* Icon + text column */}
         <div style={{ display: "flex", alignItems: "center", gap: 40 }}>
-          {iconSrc && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={iconSrc} alt="" style={{ height: 140, width: "auto", flexShrink: 0 }} />
-          )}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={iconSrc} alt="" width={140} height={140} style={{ flexShrink: 0 }} />
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ color: "#ffffff", fontSize: 148, fontWeight: 900, lineHeight: 0.9, letterSpacing: "-4px", display: "flex" }}>
               TRITON
