@@ -37,7 +37,7 @@ export default function OgImage() {
         </div>
 
         {/* Icon + text column */}
-        <div style={{ display: "flex", alignItems: "center", gap: 40 }}>
+        <div style={{ display: "flex", alignItems: "flex-start", gap: 40 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={iconSrc} alt="" width={140} height={140} style={{ flexShrink: 0 }} />
           <div style={{ display: "flex", flexDirection: "column" }}>
