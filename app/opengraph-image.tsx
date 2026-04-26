@@ -38,7 +38,7 @@ export default function OgImage() {
           <div style={{ display: "flex", flexDirection: "column", flexGrow: 1 }}>
             {/* Est tag — left aligned with TRITON */}
             <div style={{ color: "#f97316", fontSize: 22, fontWeight: 700, letterSpacing: "6px", marginBottom: 16, display: "flex" }}>
-              ORANGE COUNTY, CA · EST. 2016
+              ORANGE COUNTY, CA · EST. 2018
             </div>
             <div style={{ color: "#ffffff", fontSize: 148, fontWeight: 900, lineHeight: 0.9, letterSpacing: "-4px", display: "flex" }}>
               TRITON

@@ -24,7 +24,7 @@ export function Hero() {
 
         {/* Eyebrow */}
         <p className="text-sm font-bold uppercase tracking-[0.3em] text-accent mb-8">
-          Orange County, CA · Est. 2016
+          Orange County, CA · Est. 2018
         </p>
 
         {/* Headline */}
