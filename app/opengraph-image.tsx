@@ -1,14 +1,13 @@
 import { ImageResponse } from "next/og"
-import { readFileSync } from "fs"
-import { join } from "path"
 
 export const alt = "Triton Garage Doors | Orange County CA"
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
-export default function OgImage() {
-  const iconData = readFileSync(join(process.cwd(), "public/logo-icon-white.png"))
-  const iconSrc = `data:image/png;base64,${iconData.toString("base64")}`
+export default async function OgImage() {
+  const iconRes = await fetch("https://tritongaragedoors.com/logo-icon-white.png")
+  const iconData = await iconRes.arrayBuffer()
+  const iconSrc = `data:image/png;base64,${Buffer.from(iconData).toString("base64")}`
 
   return new ImageResponse(
     (
