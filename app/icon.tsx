@@ -21,7 +21,7 @@ export default function Icon() {
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={tridentSrc} width={22} height={22} alt="" />
+        <img src={tridentSrc} width={30} height={30} alt="" />
       </div>
     ),
     { ...size }
