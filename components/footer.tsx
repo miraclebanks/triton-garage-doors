@@ -55,7 +55,7 @@ export function Footer() {
               href="https://www.linkedin.com/in/miraclebanks"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-foreground/25 hover:text-primary-foreground/50 transition-colors font-normal text-xs"
+              className="text-primary-foreground/25 hover:text-primary-foreground/50 transition-colors font-bold italic underline text-xs"
             >
               Powered by Miracles♥
             </a>
