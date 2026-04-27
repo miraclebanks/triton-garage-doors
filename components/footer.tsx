@@ -51,6 +51,14 @@ export function Footer() {
           <div className="flex flex-col sm:items-end gap-1 text-sm font-bold text-primary-foreground/40">
             <span>{COMPANY.email}</span>
             <span>&copy; {new Date().getFullYear()} Triton Garage Doors. All rights reserved.</span>
+            <a
+              href="https://www.linkedin.com/in/miraclebanks"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary-foreground/25 hover:text-primary-foreground/50 transition-colors font-normal text-xs"
+            >
+              Powered by Miracles♥
+            </a>
           </div>
         </div>
       </div>
