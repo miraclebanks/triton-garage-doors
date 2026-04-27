@@ -7,7 +7,7 @@ export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
 export default function OgImage() {
-  const iconData = readFileSync(join(process.cwd(), "public/logo-icon-white.png"))
+  const iconData = readFileSync(join(process.cwd(), "public/apple-icon.png"))
   const iconSrc = `data:image/png;base64,${iconData.toString("base64")}`
 
   return new ImageResponse(
@@ -50,6 +50,23 @@ export default function OgImage() {
             <div style={{ width: 560, height: 5, background: "#f97316", marginTop: 40, marginBottom: 40, display: "flex", borderRadius: 4 }} />
             <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 30, fontWeight: 600, display: "flex" }}>
               Repair · Installation · Motor Services
+            </div>
+            <div style={{ display: "flex", alignItems: "center", marginTop: 32, gap: 16 }}>
+              <div style={{
+                background: "#f97316",
+                color: "#ffffff",
+                fontSize: 26,
+                fontWeight: 800,
+                letterSpacing: "1px",
+                padding: "12px 32px",
+                borderRadius: 8,
+                display: "flex",
+              }}>
+                Call Now
+              </div>
+              <div style={{ color: "rgba(255,255,255,0.7)", fontSize: 26, fontWeight: 600, display: "flex" }}>
+                (949) 463-0500
+              </div>
             </div>
           </div>
         </div>
