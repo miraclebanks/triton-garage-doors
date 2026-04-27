@@ -1,14 +1,12 @@
 import { ImageResponse } from "next/og"
-import { readFileSync } from "fs"
-import { join } from "path"
 
 export const alt = "Triton Garage Doors | Orange County CA"
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
 export default function OgImage() {
-  const iconData = readFileSync(join(process.cwd(), "public/apple-icon.png"))
-  const iconSrc = `data:image/png;base64,${iconData.toString("base64")}`
+  const iconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none"><rect width="80" height="80" rx="10" fill="#1B2848"/><rect width="80" height="80" rx="10" fill="white" fill-opacity="0.07"/><rect x="10" y="12" width="60" height="58" rx="3" fill="white" fill-opacity="0.13"/><line x1="10" y1="26.5" x2="70" y2="26.5" stroke="white" stroke-opacity="0.18" stroke-width="1.5"/><line x1="10" y1="41" x2="70" y2="41" stroke="white" stroke-opacity="0.18" stroke-width="1.5"/><line x1="10" y1="55.5" x2="70" y2="55.5" stroke="white" stroke-opacity="0.18" stroke-width="1.5"/><path d="M29.5 19 L32 24 L32 34 L38 34 L38 21 L40.5 16 L43 21 L43 34 L49 34 L49 24 L51.5 19 L54 24 L54 36 L43 36 L43 68 Q43 70 40.5 70 Q38 70 38 68 L38 36 L27 36 L27 24 Z" fill="#C87830"/></svg>`
+  const iconSrc = `data:image/svg+xml;base64,${Buffer.from(iconSvg).toString("base64")}`
 
   return new ImageResponse(
     (
